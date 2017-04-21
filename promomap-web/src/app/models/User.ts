@@ -1,15 +1,24 @@
 
 export class User {
-	private name:string;
+	private firstName:string;
+	private lastName:string;
 	private password:string;
 	private email:string;
 
-	public getName(): any {
-		return this.name;
+	public getfirstName(): any {
+		return this.firstName;
 	}
 
-	public setName(name: string): void {
-		this.name = name;
+	public setfirstName(firstName: string): void {
+		this.firstName = firstName;
+	}
+
+	public getlastName(): any {
+		return this.lastName;
+	}
+
+	public setlastName(lastName: string): void {
+		this.lastName = lastName;
 	}
 
 	public setPassword(password: string): void {

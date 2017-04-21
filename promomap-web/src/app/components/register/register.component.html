@@ -1,17 +1,19 @@
 <div class="form-group text-center">
-	<label class="text-left">Preencha os campos abaixo!</label>
+	<label class="text-left"><h2>Registre-se!</h2></label>
 	<br>
 	<div class="row"> 
 		<div class="col-md-6">
-			<input class="form-control" type="text" name="firstName" placeholder="Primeiro Nome">
+			<input class="form-control" type="text" name="firstName" placeholder="Primeiro Nome" [(ngModel)]="user.firstName">
 		</div>
 		<div class="col-md-6">
-			<input class="form-control" type="text" name="lastName" placeholder="Sobrenome">
+			<input class="form-control" type="text" name="lastName" placeholder="Sobrenome" [(ngModel)]="user.lastName">
 		</div>
 	</div>
 	<br>
-	<input class="form-control" type="email" name="email" placeholder="E-mail">
+	<input class="form-control" type="email" name="email" placeholder="E-mail" [(ngModel)]="user.email">
 	<br>
-	<input class="form-control" type="password" name="password" placeholder="Senha">
+	<input class="form-control" type="password" name="password" placeholder="Senha" [(ngModel)]="user.password">
 	<br>
+	<button class="btn-sm btn-default" (click)="register()">Registrar</button>
+	{{user.firstName}}
 </div>

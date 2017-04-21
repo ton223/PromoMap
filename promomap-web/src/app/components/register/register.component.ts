@@ -9,4 +9,7 @@ import { User } from '../../models/User';
 export class Register {
 	private user: User;
 
+	public register():void {
+		
+	}
 }
