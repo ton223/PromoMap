@@ -1,23 +1,28 @@
 
 export class User {
+	private superId:string;
 	private firstName:string;
 	private lastName:string;
 	private password:string;
 	private email:string;
 
-	public getfirstName(): any {
+	public getSuperId():string {
+		return this.superId;
+	}
+
+	public getFirstName(): any {
 		return this.firstName;
 	}
 
-	public setfirstName(firstName: string): void {
+	public setFirstName(firstName: string): void {
 		this.firstName = firstName;
 	}
 
-	public getlastName(): any {
+	public getLastName(): any {
 		return this.lastName;
 	}
 
-	public setlastName(lastName: string): void {
+	public setLastName(lastName: string): void {
 		this.lastName = lastName;
 	}
 

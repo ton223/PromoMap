@@ -1,4 +1,4 @@
-<div class="form-group text-center">
+<form class="form-group text-center">
 	<label class="text-left"><h2>Registre-se!</h2></label>
 	<br>
 	<div class="row"> 
@@ -15,5 +15,5 @@
 	<input class="form-control" type="password" name="password" placeholder="Senha" [(ngModel)]="user.password">
 	<br>
 	<button class="btn-sm btn-default" (click)="register()">Registrar</button>
-	{{user.firstName}}
-</div>
+	<!--<span>{{user.getFirstName()}}</span>-->
+</form>
