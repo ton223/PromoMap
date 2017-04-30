@@ -15,37 +15,50 @@ import javax.persistence.TemporalType;
 import br.com.promomap.beans.transport.UserObject;
 import br.com.promomap.model.PersistenceBeanInterface;
 
+/**
+ * @author Leandro Santos
+ */
+
 @Entity
-@Table(name="User")
-public class User implements Serializable, PersistenceBeanInterface<UserObject>{
-	
+@Table(name = "User")
+public class User implements Serializable, PersistenceBeanInterface<UserObject> {
+
 	private static final long serialVersionUID = 5306900357808593432L;
 
 	@Id
-    @GeneratedValue(strategy=GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
-	
-	@Column(name="superId")
+
+	@Column(name = "superId", nullable = false, unique = true)
 	private String superId;
 
-	@Column(name="name")
-	private String name;
+	@Column(name = "firstName")
+	private String firstName;
+
+	@Column(name = "lastName")
+	private String lastName;
+
+	@Column(name = "email", nullable = false, unique = true)
+	private String email;
 	
-	@Column(name="deleted", columnDefinition = "tinyint DEFAULT 0")
-	private boolean deleted;
+	@Column(name = "password", nullable = false)
+	private String password;
 	
 	@Temporal(TemporalType.TIMESTAMP)
-	@Column(name="deletedDate")
+	@Column(name = "createdAt")
+	private Date createdAt;
+
+	@Column(name = "deleted", columnDefinition = "tinyint DEFAULT 0")
+	private boolean deleted;
+
+	@Temporal(TemporalType.TIMESTAMP)
+	@Column(name = "deletedDate")
 	private Date deletedDate;
 
 	public Long getId() {
 		return id;
 	}
 
-	public void setId(Long id) {
-		this.id = id;
-	}
-	
 	public String getSuperId() {
 		return superId;
 	}
@@ -54,12 +67,20 @@ public class User implements Serializable, PersistenceBeanInterface<UserObject>{
 		this.superId = superId;
 	}
 
-	public String getName() {
-		return name;
+	public String getFirstName() {
+		return firstName;
 	}
 
-	public void setName(String name) {
-		this.name = name;
+	public void setFirstName(String name) {
+		this.firstName = name;
+	}
+
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
 	}
 
 	public boolean isDeleted() {
@@ -77,18 +98,47 @@ public class User implements Serializable, PersistenceBeanInterface<UserObject>{
 	public void setDeletedDate(Date deletedDate) {
 		this.deletedDate = deletedDate;
 	}
+
+	public String getLastName() {
+		return lastName;
+	}
+
+	public void setLastName(String lastName) {
+		this.lastName = lastName;
+	}
 	
+	public String getPassword() {
+		return password;
+	}
+
+	public void setPassword(String password) {
+		this.password = password;
+	}
+
+	public Date getCreatedAt() {
+		return createdAt;
+	}
+
+	public void setCreatedAt(Date createdAt) {
+		this.createdAt = createdAt;
+	}
+
 	@Override
 	public String toString() {
-		return "User [id=" + id + ", superId=" + superId + ", name=" + name + ", deleted=" + deleted + ", deletedDate="
-				+ deletedDate + "]";
+		return "User [id=" + id + ", superId=" + superId + ", firstName=" + firstName + ", lastName=" + lastName
+				+ ", email=" + email + ", password=" + password + ", createdAt=" + createdAt + ", deleted=" + deleted
+				+ ", deletedDate=" + deletedDate + "]";
 	}
 
 	@Override
 	public UserObject generateTransportObject() {
 		UserObject userObject = new UserObject();
 		userObject.setSuperId(getSuperId());
-		userObject.setName(getName());
+		userObject.setFirstName(getFirstName());
+		userObject.setLastName(getLastName());
+		userObject.setEmail(getEmail());
+//		userObject.setPassword(getPassword());
+		userObject.setCreatedAt(getCreatedAt());
 		return userObject;
 	}
 

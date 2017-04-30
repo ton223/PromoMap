@@ -11,6 +11,10 @@ public interface UserDAO extends CrudRepository<User, Long>{
 	
 	public User findBySuperId(String superId);
 	
+	public User findByEmail(String email);
+	
+	public User findByEmailAndPassword(String email, String password);
+	
 	@Query("from User where deleted!=1")
 	public  List<User> listAll();
 	
