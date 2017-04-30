@@ -1,17 +1,16 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
-  	selector: 'app-root',
-  	templateUrl: './app.component.html',
-  	styleUrls: ['./app.component.css']
+  selector: 'app-root',
+  templateUrl: './app.component.html',
+  styleUrls: ['./app.component.css']
 })
-export class AppComponent {
-	private login: string='';
-	private password: string='';
-	private logged = false;
-  	private title = 'PromoMap';
+export class AppComponent implements OnInit {
 
-  	private loginClick():void {
-  		this.login="sim"
-  	}
+  constructor(private router: Router) { }
+
+  ngOnInit() {
+    this.router.navigate(['home']);
+  }
 }

@@ -1,25 +1,46 @@
 import { Injectable } from '@angular/core';
-import {Http, URLSearchParams, Headers} from '@angular/http';
+import { Http, Response } from '@angular/http';
+import { Observable } from 'rxjs/Observable';
+import 'rxjs/add/operator/catch';
+import 'rxjs/add/operator/map';
+import 'rxjs/add/operator/toPromise';
 
-import { Config } from '../config';
 import { User } from '../models/User';
+import { Utils } from '../utils/utils';
 
 @Injectable()
 export class UserService {
+  private utils = new Utils();
+  private path = this.utils.getUrl('user/');
 
-	constructor(private http: Http, private config: Config) {
-	}
+  constructor(private http: Http) { }
 
-  	private path : string = this.config.getUrl('user/');
+  public list(): Promise<User[]> {
+    return this.http.get(this.path + 'list', this.utils.getHeaders())
+      .toPromise()
+      .then(this.utils.extractData)
+      .catch(this.utils.handleError);
+  }
 
-	public register(user: User) {
-		let userJson = JSON.stringify({user});
+  public create(user: User): Promise<any> {
+    return this.http.post(this.path + 'create', user, this.utils.getHeaders())
+      .toPromise()
+      .then(this.utils.extractData)
+      .catch(this.utils.handleError);
+  }
 
-		this.http.post(this.path + 'create', userJson, this.config.getHeaders())
-		.subscribe(
-		  data => {
-		    
-		  }
-		);
-	}
+  public login(user: User): Promise<any> {
+    return this.http.post(this.path + 'login', user, this.utils.getHeaders())
+      .toPromise()
+      .then(this.utils.extractData)
+      .catch(this.utils.handleError);
+  }
+
+  public logout(): Promise<any> {
+    return this.http.post(this.path + 'logout', this.utils.createRequest(null), this.utils.getHeaders())
+      .toPromise()
+      .then(this.utils.extractData)
+      .catch(this.utils.handleError);
+  }
+
 }

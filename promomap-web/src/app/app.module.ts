@@ -5,19 +5,26 @@ import { HttpModule } from '@angular/http';
 import { RouterModule, Routes } from '@angular/router';
 
 import { AppComponent } from './app.component';
-import { Test } from './components/test/test.component';
-import { Register } from './components/register/register.component';
+import { TestComponent } from './components/test/test.component';
+import { RegisterComponent } from './components/register/register.component';
+import { LoginComponent } from './components/login/login.component';
+import { SidebarComponent } from './components/sidebar/sidebar.component';
+import { HomeComponent } from './components/home/home.component';
 
 const appRoutes: Routes = [
-  { path: 'test', component: Test },
-  { path: 'register', component: Register }
+  { path: 'home', component: HomeComponent },
+  { path: 'register', component: RegisterComponent },
+  { path: 'test', component: TestComponent }
 ];
 
 @NgModule({
   declarations: [
     AppComponent,
-    Register,
-    Test
+    HomeComponent,
+    RegisterComponent,
+    LoginComponent,
+    SidebarComponent,
+    TestComponent
   ],
   imports: [
     BrowserModule,

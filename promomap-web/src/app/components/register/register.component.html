@@ -1,19 +1,54 @@
-<form class="form-group text-center">
+<div class="alert alert-success" *ngIf="registred">
+	<span>
+		Registro realizado com sucesso.
+		Digite suas credenciais para logar!
+	</span>
+</div>
+<form #registerForm="ngForm" class="form-group text-center row" *ngIf="!registred">
+	<div class="alert alert-danger"  *ngIf="error">
+	<span>
+		Erro: {{errorMessage}}
+	</span>
+</div>
 	<label class="text-left"><h2>Registre-se!</h2></label>
 	<br>
-	<div class="row"> 
-		<div class="col-md-6">
-			<input class="form-control" type="text" name="firstName" placeholder="Primeiro Nome" [(ngModel)]="user.firstName">
+	<div class="row">
+		<div class="form-group input-group col-xs-10 col-xs-pull-1 col-xs-push-1 col-md-8 col-md-pull-2 col-md-push-2">
+			<span class="input-group-addon">
+				<span *ngIf="!firstName.valid" class="glyphicon glyphicon-user" aria-hidden="true"></span>
+				<span *ngIf="firstName.valid" class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span>
+			</span> 
+			<input id="firstName" class="input form-control" type="text" name="firstName" placeholder="Nome" 
+			[(ngModel)]="user.firstName" minlength="4" [attr.maxlength]="30" #firstName="ngModel" required>
 		</div>
-		<div class="col-md-6">
-			<input class="form-control" type="text" name="lastName" placeholder="Sobrenome" [(ngModel)]="user.lastName">
+		<div class="form-group input-group col-xs-10 col-xs-pull-1 col-xs-push-1 col-md-8 col-md-pull-2 col-md-push-2">
+			<span class="input-group-addon">
+				<span *ngIf="!lastName.valid" class="glyphicon glyphicon-info-sign" aria-hidden="true"></span>
+				<span *ngIf="lastName.valid" class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span>
+			</span> 
+			<input id="lastName" class="input form-control" type="text" name="lastName" placeholder="Sobrenome" 
+			[(ngModel)]="user.lastName" minlength="4" [attr.maxlength]="30" #lastName="ngModel" required>
 		</div>
 	</div>
-	<br>
-	<input class="form-control" type="email" name="email" placeholder="E-mail" [(ngModel)]="user.email">
-	<br>
-	<input class="form-control" type="password" name="password" placeholder="Senha" [(ngModel)]="user.password">
-	<br>
-	<button class="btn-sm btn-default" (click)="register()">Registrar</button>
-	<!--<span>{{user.getFirstName()}}</span>-->
+	<div class="row">
+		<div class="form-group input-group col-xs-10 col-xs-pull-1 col-xs-push-1 col-md-8 col-md-pull-2 col-md-push-2">
+			<span class="input-group-addon">
+				<span *ngIf="!isValidEmail()" class="glyphicon glyphicon-envelope" aria-hidden="true"></span>
+				<span *ngIf="isValidEmail()" class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span>
+			</span>
+			<input id="email" class="input form-control" type="email" name="email" placeholder="exemplo@email.com" [(ngModel)]="user.email" 
+			minlength="5"
+			[attr.maxlength]="70"
+			required>
+		</div>
+		<div class="form-group input-group col-xs-10 col-xs-pull-1 col-xs-push-1 col-md-8 col-md-pull-2 col-md-push-2">
+			<span class="input-group-addon">
+				<span *ngIf="!password.valid" class="glyphicon glyphicon-lock" aria-hidden="true"></span>
+				<span *ngIf="password.valid" class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span>
+			</span> 
+			<input id="password" class="input form-control" type="password" name="password" placeholder="Senha" 
+			[(ngModel)]="user.password" minlength="6" [attr.maxlength]="30" #password="ngModel" required>
+		</div>
+	</div>
+	<button type="submit" [disabled]="!registerForm.form.valid" class="btn btn-success" (click)="register()">Registrar</button>
 </form>

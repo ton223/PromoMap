@@ -1,0 +1,37 @@
+<div *ngIf="logged">
+	<button (click)="logout()"> {{user.firstName}} <span class="glyphicon glyphicon-off"></span></button> 
+	<!-- <ul class="nav navbar-nav">
+		<li class="dropdown"><a class="dropdown-toggle" href="#" data-toggle="dropdown">
+		<b class="caret"></b></a>
+			<ul class="dropdown-menu">
+				<li class="divider"></li>
+				<li><button (click)="logout()">Sair</button></li>
+			</ul>
+		</li>
+	</ul> -->
+</div>
+<div *ngIf="!logged">
+	<div class="row form-inline">
+		<div class="form-group col-xs-10">
+			<div class="row">
+				<div class="col-xs-6">
+					<input id="email" class="form-control input-sm" type="email" placeholder="E-mail" [(ngModel)]="user.email" />							
+				</div>
+				<div class="col-xs-6">
+					<input id="password" class="form-control input-sm" type="password" placeholder="Senha" [(ngModel)]="user.password" />													
+				</div>
+			</div>
+		</div>
+		<div class="form-group col-xs-2">
+			<button type="submit" class="btn-sm btn-success" (click)="login()">Logar</button>					
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-xs-6">
+			<a routerLink="register">Registre-se!</a>				
+		</div>
+		<div class="col-xs-6 col-xs-pull-1">
+			<a href="#">Esqueceu a senha?</a>					
+		</div>
+	</div>
+</div>
