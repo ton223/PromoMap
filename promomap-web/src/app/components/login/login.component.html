@@ -1,5 +1,5 @@
 <div *ngIf="logged">
-	<button (click)="logout()"> {{user.firstName}} <span class="glyphicon glyphicon-off"></span></button> 
+	<a class="dropdown-toggle logout_button" data-toggle="dropdown" href="#" (click)="logout()"> {{user.firstName}} <span class="glyphicon glyphicon-off"></span></a> 
 	<!-- <ul class="nav navbar-nav">
 		<li class="dropdown"><a class="dropdown-toggle" href="#" data-toggle="dropdown">
 		<b class="caret"></b></a>
