@@ -6,15 +6,16 @@ import { RouterModule, Routes } from '@angular/router';
 
 import { AppComponent } from './app.component';
 import { TestComponent } from './components/test/test.component';
+import { HomeComponent } from './components/home/home.component';
+import { SidebarComponent } from './components/sidebar/sidebar.component';
 import { RegisterComponent } from './components/register/register.component';
 import { LoginComponent } from './components/login/login.component';
-import { SidebarComponent } from './components/sidebar/sidebar.component';
-import { HomeComponent } from './components/home/home.component';
+import { CreateCompanyComponent } from './components/company/create-company.component';
 
 const appRoutes: Routes = [
   { path: 'home', component: HomeComponent },
   { path: 'register', component: RegisterComponent },
-  { path: 'test', component: TestComponent }
+  { path: 'create-company', component:  CreateCompanyComponent}
 ];
 
 @NgModule({
@@ -24,7 +25,7 @@ const appRoutes: Routes = [
     RegisterComponent,
     LoginComponent,
     SidebarComponent,
-    TestComponent
+    CreateCompanyComponent
   ],
   imports: [
     BrowserModule,

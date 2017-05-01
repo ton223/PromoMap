@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { User } from '../../models/User';
 import { UserService } from '../../services/user-rest.service';
 import { AppComponent } from '../../app.component';
@@ -15,7 +16,7 @@ export class LoginComponent implements OnInit {
   private user = new User();
   private logged: boolean;
 
-  constructor(private userService: UserService) { }
+  constructor(private userService: UserService, private router: Router) { }
 
   ngOnInit() {
     if (SessionDAO.hasToken()) {
@@ -35,6 +36,7 @@ export class LoginComponent implements OnInit {
           SessionDAO.setToken(task.info);
           SessionDAO.setUser(task.data);
           this.user = task.data;
+          this.router.navigate(['home']);
         } else {
 
         }

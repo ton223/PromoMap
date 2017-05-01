@@ -1,14 +1,14 @@
 <div *ngIf="logged">
-	<a class="dropdown-toggle logout_button" data-toggle="dropdown" href="#" (click)="logout()"> {{user.firstName}} <span class="glyphicon glyphicon-off"></span></a> 
-	<!-- <ul class="nav navbar-nav">
-		<li class="dropdown"><a class="dropdown-toggle" href="#" data-toggle="dropdown">
+	<ul class="nav navbar-nav">
+		<li class="dropdown"><a class="dropdown-toggle" href="#" data-toggle="dropdown">{{user.firstName}} {{user.lastName}}
 		<b class="caret"></b></a>
-			<ul class="dropdown-menu">
+			<ul class="dropdown-menu navbar-inverse">
+				<li><a class="user_dropdown" routerLink="create-company">Perfil</a></li>
 				<li class="divider"></li>
-				<li><button (click)="logout()">Sair</button></li>
+				<li><a class="user_dropdown" data-toggle="dropdown" href="#" (click)="logout()">Sair</a></li>
 			</ul>
 		</li>
-	</ul> -->
+	</ul>
 </div>
 <div *ngIf="!logged">
 	<div class="row form-inline">

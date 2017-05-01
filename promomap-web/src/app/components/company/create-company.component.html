@@ -1,0 +1,25 @@
+<div class="alert alert-success" *ngIf="registred">
+	<span>
+		texto de company criada aqui,
+	</span>
+</div>
+<form #registerForm="ngForm" class="form-group text-center row" *ngIf="!registred">
+	<div class="alert alert-danger"  *ngIf="error">
+	<span>
+		Erro: {{errorMessage}}
+	</span>
+</div>
+	<label class="text-left"><h2>Crie uma 'company'</h2></label>
+	<br>
+	<div class="row">
+		<div class="form-group input-group col-xs-10 col-xs-pull-1 col-xs-push-1 col-md-8 col-md-pull-2 col-md-push-2">
+			<span class="input-group-addon">
+				<span *ngIf="!name.valid" class="glyphicon glyphicon-user" aria-hidden="true"></span>
+				<span *ngIf="name.valid" class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span>
+			</span> 
+			<input id="name" class="input form-control" type="text" name="name" placeholder="Nome" 
+			[(ngModel)]="company.name" minlength="4" [attr.maxlength]="30" #name="ngModel" required>
+		</div>
+	</div>
+	<button type="submit" [disabled]="!registerForm.form.valid" class="btn btn-success" (click)="create()">Criar</button>
+</form>
