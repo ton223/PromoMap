@@ -8,6 +8,10 @@ import org.springframework.stereotype.Service;
 import br.com.promomap.beans.persistence.Session;
 import br.com.promomap.dao.SessionDAO;
 
+/**
+ * @author <a href="mailto:leandro.lucas_@hotmail.com">Leandro Lucas Santos</a>
+ */
+
 @Service
 public class SessionService {
 

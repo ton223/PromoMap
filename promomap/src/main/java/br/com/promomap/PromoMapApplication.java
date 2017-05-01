@@ -7,6 +7,10 @@ import org.springframework.web.servlet.config.annotation.CorsRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
 
+/**
+ * @author <a href="mailto:leandro.lucas_@hotmail.com">Leandro Lucas Santos</a>
+ */
+
 @SpringBootApplication
 public class PromoMapApplication {
 	

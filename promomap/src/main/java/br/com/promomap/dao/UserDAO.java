@@ -7,6 +7,10 @@ import org.springframework.data.repository.CrudRepository;
 
 import br.com.promomap.beans.persistence.User;
 
+/**
+ * @author <a href="mailto:leandro.lucas_@hotmail.com">Leandro Lucas Santos</a>
+ */
+
 public interface UserDAO extends CrudRepository<User, Long>{
 	
 	public User findBySuperId(String superId);

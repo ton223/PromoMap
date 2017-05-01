@@ -2,6 +2,10 @@ package br.com.promomap.beans.transport;
 
 import java.util.Collection;
 
+/**
+ * @author <a href="mailto:leandro.lucas_@hotmail.com">Leandro Lucas Santos</a>
+ */
+
 public class TaskObject {
 
 	private Collection<Object> dataList;

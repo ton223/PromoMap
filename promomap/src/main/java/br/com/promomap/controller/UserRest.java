@@ -13,6 +13,10 @@ import br.com.promomap.beans.transport.TaskObject;
 import br.com.promomap.beans.transport.UserObject;
 import br.com.promomap.service.UserService;
 
+/**
+ * @author <a href="mailto:leandro.lucas_@hotmail.com">Leandro Lucas Santos</a>
+ */
+
 @RestController
 @RequestMapping("/user")
 public class UserRest {

@@ -14,6 +14,10 @@ import br.com.promomap.beans.transport.UserObject;
 import br.com.promomap.dao.UserDAO;
 import br.com.promomap.utils.Utils;
 
+/**
+ * @author <a href="mailto:leandro.lucas_@hotmail.com">Leandro Lucas Santos</a>
+ */
+
 @Service
 public class UserService {
 
