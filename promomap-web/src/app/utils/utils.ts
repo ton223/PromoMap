@@ -2,7 +2,6 @@ import { Injectable } from '@angular/core';
 import { Response, Headers, RequestOptions } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
 import { SessionDAO } from '../dao/session-dao';
-import { Request } from '../models/Request';
 @Injectable()
 export class Utils {
 
@@ -25,13 +24,6 @@ export class Utils {
   public extractData(response: Response) {
     const data = response.json();
     return data || {};
-  }
-
-  public createRequest(data: any): Request {
-    const request = new Request();
-    request.setData(data);
-    request.setToken(SessionDAO.getToken());
-    return request;
   }
 
   public handleError(error: Response | any) {

@@ -1,4 +1,5 @@
 import { User } from '../models/User';
+import { Marker } from '../models/Marker';
 
 export class SessionDAO {
 
@@ -28,7 +29,16 @@ export class SessionDAO {
   }
 
   public static clearSession(): void {
-    localStorage.setItem('token', null);
-    localStorage.setItem('firstName', null);
+    localStorage.setItem('token', undefined);
+    localStorage.setItem('user', undefined);
+  }
+
+  public static setUserPosition(pos: any) {
+    localStorage.setItem('userLocation', JSON.stringify(pos));
+  }
+
+  public static getUserPosition(): any {
+    const pos = JSON.parse(localStorage.getItem('userLocation'));
+    return pos;
   }
 }

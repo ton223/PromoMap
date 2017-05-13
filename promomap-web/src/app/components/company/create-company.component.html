@@ -1,25 +1,73 @@
-<div class="alert alert-success" *ngIf="registred">
+<div class="alert alert-success" *ngIf="created">
 	<span>
-		texto de company criada aqui,
+		Seu estabelicimanto foi cadastrado com sucesso. Acesse ~aqui~ a página de administração!
 	</span>
 </div>
-<form #registerForm="ngForm" class="form-group text-center row" *ngIf="!registred">
+<form #registerForm="ngForm" class="form-group text-center row"  *ngIf="!created">
 	<div class="alert alert-danger"  *ngIf="error">
 	<span>
 		Erro: {{errorMessage}}
 	</span>
 </div>
-	<label class="text-left"><h2>Crie uma 'company'</h2></label>
+	<h3>Registre seu estabelecimento!</h3>
 	<br>
 	<div class="row">
 		<div class="form-group input-group col-xs-10 col-xs-pull-1 col-xs-push-1 col-md-8 col-md-pull-2 col-md-push-2">
 			<span class="input-group-addon">
-				<span *ngIf="!name.valid" class="glyphicon glyphicon-user" aria-hidden="true"></span>
+				<span *ngIf="!name.valid" class="glyphicon glyphicon-briefcase" aria-hidden="true"></span>
 				<span *ngIf="name.valid" class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span>
 			</span> 
 			<input id="name" class="input form-control" type="text" name="name" placeholder="Nome" 
 			[(ngModel)]="company.name" minlength="4" [attr.maxlength]="30" #name="ngModel" required>
 		</div>
+		<div class="form-group input-group col-xs-10 col-xs-pull-1 col-xs-push-1 col-md-8 col-md-pull-2 col-md-push-2">
+			<span class="input-group-addon">
+				<span *ngIf="!description.valid" class="glyphicon glyphicon-align-center" aria-hidden="true"></span>
+				<span *ngIf="description.valid" class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span>
+			</span> 
+			<input id="description" class="input form-control" type="text" name="description" placeholder="Descrição"
+			[(ngModel)]="company.description" minlength="4" [attr.maxlength]="200" #description="ngModel" required>
+		</div>
+		<div class="form-group input-group col-xs-10 col-xs-pull-1 col-xs-push-1 col-md-8 col-md-pull-2 col-md-push-2">
+			<span class="input-group-addon">
+				<span *ngIf="!cnpj.valid" class="glyphicon glyphicon-tag" aria-hidden="true"></span>
+				<span *ngIf="cnpj.valid" class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span>
+			</span> 
+			<input id="cnpj" class="input form-control" type="text" name="cnpj" placeholder="CNPJ" pattern="[0-9]+$" title="Digite apenas números"
+			[(ngModel)]="company.cnpj" minlength="4" [attr.maxlength]="30" #cnpj="ngModel" required>
+		</div>
+		<div class="form-group input-group col-xs-10 col-xs-pull-1 col-xs-push-1 col-md-8 col-md-pull-2 col-md-push-2">
+			<span class="input-group-addon">
+				<span *ngIf="!phone.valid" class="glyphicon glyphicon-earphone" aria-hidden="true"></span>
+				<span *ngIf="phone.valid" class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span>
+			</span> 
+			<input id="phone" class="input form-control" type="text" name="phone" placeholder="Telefone"
+			[(ngModel)]="company.phone" minlength="4" [attr.maxlength]="30" #phone="ngModel" required>
+		</div>
+		<div class="form-group input-group col-xs-10 col-xs-pull-1 col-xs-push-1 col-md-8 col-md-pull-2 col-md-push-2">
+			<span class="input-group-addon">
+				<span *ngIf="!email.valid" class="glyphicon glyphicon-envelope" aria-hidden="true"></span>
+				<span *ngIf="email.valid" class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span>
+			</span> 
+			<input id="email" class="input form-control" type="text" name="email" placeholder="E-mail"
+			[(ngModel)]="company.email" minlength="4" [attr.maxlength]="30" #email="ngModel" required>
+		</div>
+		<div class="form-group input-group col-xs-10 col-xs-pull-1 col-xs-push-1 col-md-8 col-md-pull-2 col-md-push-2">
+			<span class="input-group-addon">
+				<span type="button"
+				(click)="mapVisible=!mapVisible">
+					<span *ngIf="!location.valid" class="glyphicon glyphicon-map-marker" aria-hidden="true"></span>
+					<span *ngIf="location.valid" class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span>
+				</span>
+			</span> 
+			<input id="location" (click)="mapVisible=!mapVisible; updateLocation()" class="input form-control" type="text" name="location" placeholder="Local"
+			[(ngModel)]="coords" minlength="10" [attr.maxlength]="30" #location="ngModel" readonly required>
+		</div>
+		<div (click)="updateLocation()" class="form-group input-group col-xs-10 col-xs-pull-1 col-xs-push-1 col-md-8 col-md-pull-2 col-md-push-2" *ngIf="mapVisible==true">
+			<app-mapmarker></app-mapmarker>
+		</div>
+	    <input type="checkbox" name="terms" id="terms" [(ngModel)]="terms" required> Aceito os termos.
 	</div>
+	<br>
 	<button type="submit" [disabled]="!registerForm.form.valid" class="btn btn-success" (click)="create()">Criar</button>
 </form>

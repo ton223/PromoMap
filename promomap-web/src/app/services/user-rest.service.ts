@@ -15,13 +15,6 @@ export class UserService {
 
   constructor(private http: Http) { }
 
-  public list(): Promise<User[]> {
-    return this.http.get(this.path + 'list', this.utils.getHeaders())
-      .toPromise()
-      .then(this.utils.extractData)
-      .catch(this.utils.handleError);
-  }
-
   public create(user: User): Promise<any> {
     return this.http.post(this.path + 'create', user, this.utils.getHeaders())
       .toPromise()
@@ -37,7 +30,7 @@ export class UserService {
   }
 
   public logout(): Promise<any> {
-    return this.http.post(this.path + 'logout', this.utils.createRequest(null), this.utils.getHeaders())
+    return this.http.post(this.path + 'logout', null,  this.utils.getHeaders())
       .toPromise()
       .then(this.utils.extractData)
       .catch(this.utils.handleError);

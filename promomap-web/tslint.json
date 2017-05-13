@@ -1,4 +1,4 @@
-{
+/*{
   "rulesDirectory": [
     "node_modules/codelyzer"
   ],
@@ -111,6 +111,6 @@
     "directive-class-suffix": true,
     "no-access-missing-member": true,
     "templates-use-public": true,
-    "invoke-injectable": true
   }
 }
+*/

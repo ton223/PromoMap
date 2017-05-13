@@ -10,7 +10,7 @@
 		Erro: {{errorMessage}}
 	</span>
 </div>
-	<label class="text-left"><h2>Registre-se!</h2></label>
+	<h2>Registre-se!</h2>
 	<br>
 	<div class="row">
 		<div class="form-group input-group col-xs-10 col-xs-pull-1 col-xs-push-1 col-md-8 col-md-pull-2 col-md-push-2">
@@ -49,6 +49,8 @@
 			<input id="password" class="input form-control" type="password" name="password" placeholder="Senha" 
 			[(ngModel)]="user.password" minlength="6" [attr.maxlength]="30" #password="ngModel" required>
 		</div>
+		<input type="checkbox" name="terms" id="terms" [(ngModel)]="terms" required> Aceito os termos.
 	</div>
+		<br>
 	<button type="submit" [disabled]="!registerForm.form.valid" class="btn btn-success" (click)="register()">Registrar</button>
 </form>

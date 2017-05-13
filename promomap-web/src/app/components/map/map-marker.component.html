@@ -1,0 +1,28 @@
+<div class="input-group form-group col-xs-12">
+	<input placeholder="Procurar" autocorrect="off" autocapitalize="off" spellcheck="off" type="text" 
+	class="form-control" #search [formControl]="searchControl">
+</div>
+<sebm-google-map 
+	[latitude]="mapLocation.lat" 
+	[longitude]="mapLocation.lng"
+    [styles]="style"
+	[zoom]="zoom"
+    [zoomControl]="zoomControl"
+    [streetViewControl]="streetViewControl"
+    [disableDefaultUI]="disableDefaultUI"
+    [mapTypeControl]="mapTypeControl"
+	(mapClick)="mapClicked($event)">
+  <sebm-google-map-marker [latitude]="marker.lat" 
+  	[longitude]="marker.lng" 
+  	[markerDraggable]="marker.draggable" 
+  	[label]="marker.label"
+  	(markerClick)="clickedMarker(marker.label, 1)"
+  	(dragEnd)="markerDragEnd($event)">
+  
+  	<sebm-google-map-info-window>
+  		<strong>Company Location</strong>
+  	</sebm-google-map-info-window>
+  
+  </sebm-google-map-marker>
+  
+</sebm-google-map>
