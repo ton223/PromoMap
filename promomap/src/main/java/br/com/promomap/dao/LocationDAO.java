@@ -15,4 +15,6 @@ public interface LocationDAO extends CrudRepository<Location, Long>{
 	
 	public Location findBySuperId(String superId);
 	
+	public Location findById(Long id);
+	
 }

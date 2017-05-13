@@ -43,7 +43,7 @@ public class CompanyService {
 			location.setLat(companyO.getLocation().getLat());
 			location.setLng(companyO.getLocation().getLng());
 			locationDAO.save(location);
-			
+			company.setLocation(locationDAO.findBySuperId(location.getSuperId()));
 			companyDAO.save(company);
 //			task.setData(company.generateTransportObject());
 		} catch (Exception e) {
