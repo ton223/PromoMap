@@ -47,11 +47,17 @@ export class LoginComponent implements OnInit {
   private logout() {
     this.userService.logout().then(
       response => {
-        const task = response.entity;
-        if (task.success) {
-          SessionDAO.clearSession();
+        if (response.status === 200) {
           this.logged = false;
+          SessionDAO.clearSession();
+        } else {
+          this.logged = false;
+          SessionDAO.clearSession();
         }
+      },
+      error => {
+        this.logged = false;
+        SessionDAO.clearSession();
       }
     );
   }

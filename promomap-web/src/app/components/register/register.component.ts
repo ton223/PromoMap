@@ -30,13 +30,17 @@ export class RegisterComponent {
   public register(): void {
     this.userService.create(this.user).then(
       response => {
-        const task = response.entity;
-        if (task.success) {
-          this.registred = true;
+        if (response.status === 200) {
+          const task = response.entity;
+          if (task.success) {
+            this.registred = true;
+          } else {
+            this.error = true;
+            this.errorMessage = task.errorMessage;
+          }
         } else {
           this.error = true;
-          this.errorCode = task.errorCode;
-          this.errorMessage = task.errorMessage;
+          this.errorMessage = response.statusInfo;
         }
       },
       error => this.errorMessage = <any>error
