@@ -23,7 +23,7 @@ public class PromoMapApplication {
         return new WebMvcConfigurerAdapter() {
             @Override
             public void addCorsMappings(CorsRegistry registry) {
-                registry.addMapping("/**").allowedOrigins("http://192.168.25.15:4200")
+                registry.addMapping("/**").allowedOrigins("http://127.0.0.1:4200")
                 .allowedHeaders("token", "content-type")
 //                .exposedHeaders("Access-Control-Allow-Origin", "Access-Control-Allow-Headers")
                 .allowedMethods("GET", "POST", "PUT", "DELETE");
