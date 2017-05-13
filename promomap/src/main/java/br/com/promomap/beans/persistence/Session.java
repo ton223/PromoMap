@@ -7,6 +7,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
@@ -31,6 +32,7 @@ public class Session implements PersistenceBeanInterface<SessionObject> {
 	private String token;
 
 	@ManyToOne()
+	@JoinColumn(name = "user_id")
 	private User user;
 	
 	@Column(name = "logged", columnDefinition = "tinyint DEFAULT 0")
@@ -95,6 +97,11 @@ public class Session implements PersistenceBeanInterface<SessionObject> {
 	@Override
 	public SessionObject generateTransportObject() {
 		SessionObject sessionO = new SessionObject();
+		sessionO.setToken(getToken());
+		sessionO.setLogged(isLogged());
+		sessionO.setLoginDate(getLoginDate());
+		sessionO.setLogoutDate(getLogoutDate());
+		sessionO.setUser(getUser().generateTransportObject());
 		return sessionO;
 	}
 

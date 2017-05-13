@@ -1,6 +1,8 @@
 package br.com.promomap.beans.transport;
 
 import java.util.Date;
+import java.util.HashSet;
+import java.util.Set;
 
 /**
  * @author <a href="mailto:leandro.lucas_@hotmail.com">Leandro Lucas Santos</a>
@@ -19,6 +21,12 @@ public class UserObject {
 	private String password;
 	
 	private Date createdAt;
+	
+	private Set<CompanyObject> companys;
+
+	public UserObject() {
+		companys = new HashSet<CompanyObject>();
+	}
 
 	public String getSuperId() {
 		return superId;
@@ -42,16 +50,18 @@ public class UserObject {
 		return lastName;
 	}
 
-	public void setLastName(String lastName) {
+	public UserObject setLastName(String lastName) {
 		this.lastName = lastName;
+		return this;
 	}
 
 	public String getEmail() {
 		return email;
 	}
 
-	public void setEmail(String email) {
+	public UserObject setEmail(String email) {
 		this.email = email;
+		return this;
 	}
 
 	public String getPassword() {
@@ -68,6 +78,14 @@ public class UserObject {
 
 	public void setCreatedAt(Date createdAt) {
 		this.createdAt = createdAt;
+	}
+
+	public Set<CompanyObject> getCompanys() {
+		return companys;
+	}
+
+	public void setCompanys(Set<CompanyObject> companys) {
+		this.companys = companys;
 	}
 
 	@Override

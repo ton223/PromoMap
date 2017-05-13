@@ -1,13 +1,15 @@
 package br.com.promomap.beans.persistence;
 
-import java.io.Serializable;
 import java.util.Date;
+import java.util.HashSet;
+import java.util.Set;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -21,9 +23,7 @@ import br.com.promomap.model.PersistenceBeanInterface;
 
 @Entity
 @Table(name = "User")
-public class User implements Serializable, PersistenceBeanInterface<UserObject> {
-
-	private static final long serialVersionUID = 5306900357808593432L;
+public class User implements PersistenceBeanInterface<UserObject> {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
@@ -54,6 +54,14 @@ public class User implements Serializable, PersistenceBeanInterface<UserObject> 
 	@Temporal(TemporalType.TIMESTAMP)
 	@Column(name = "deletedDate")
 	private Date deletedDate;
+	
+	@OneToMany
+	private Set<Company> companys;
+
+	
+	public User() {
+		companys = new HashSet<Company>();
+	}
 
 	public Long getId() {
 		return id;
@@ -123,6 +131,14 @@ public class User implements Serializable, PersistenceBeanInterface<UserObject> 
 		this.createdAt = createdAt;
 	}
 
+	public Set<Company> getCompanys() {
+		return companys;
+	}
+
+	public void setCompanys(Set<Company> companys) {
+		this.companys = companys;
+	}
+
 	@Override
 	public String toString() {
 		return "User [id=" + id + ", superId=" + superId + ", firstName=" + firstName + ", lastName=" + lastName
@@ -139,6 +155,10 @@ public class User implements Serializable, PersistenceBeanInterface<UserObject> 
 		userObject.setEmail(getEmail());
 //		userObject.setPassword(getPassword());
 		userObject.setCreatedAt(getCreatedAt());
+		for(Company company : getCompanys()) {
+			userObject.getCompanys().add(company.generateTransportObject());
+		}
+		
 		return userObject;
 	}
 

@@ -110,5 +110,10 @@ public class UserService {
 		user.setDeletedDate(new Date());
 		userDAO.save(user);
 	}
+	
+	public User findUserBySessionToken(String token) {
+		Session session = this.sessionService.findByToken(token);
+		return session.getUser();
+	}
 
 }
