@@ -1,0 +1,13 @@
+.row{
+    margin-top:40px;
+    padding: 0 10px;
+}
+
+.panel-heading div {
+	margin-top: -18px;
+	font-size: 15px;
+}
+
+.panel-heading div span{
+	margin-left:5px;
+}
