@@ -6,6 +6,8 @@ import java.util.Set;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -16,6 +18,7 @@ import javax.persistence.TemporalType;
 
 import br.com.promomap.beans.transport.UserObject;
 import br.com.promomap.model.PersistenceBeanInterface;
+import br.com.promomap.model.enums.GenderEnum;
 
 /**
  * @author <a href="mailto:leandro.lucas_@hotmail.com">Leandro Lucas Santos</a>
@@ -43,6 +46,13 @@ public class User implements PersistenceBeanInterface<UserObject> {
 	
 	@Column(name = "password", nullable = false)
 	private String password;
+	
+	@Column(name = "phone")
+	private String phone;
+	
+	@Column(name = "gender")
+	@Enumerated(EnumType.STRING)
+	private GenderEnum gender;
 	
 	@Temporal(TemporalType.TIMESTAMP)
 	@Column(name = "createdAt")
@@ -139,11 +149,28 @@ public class User implements PersistenceBeanInterface<UserObject> {
 		this.companys = companys;
 	}
 
+	public String getPhone() {
+		return phone;
+	}
+
+	public void setPhone(String phone) {
+		this.phone = phone;
+	}
+
+	public GenderEnum getGender() {
+		return gender;
+	}
+
+	public void setGender(GenderEnum gender) {
+		this.gender = gender;
+	}
+
 	@Override
 	public String toString() {
 		return "User [id=" + id + ", superId=" + superId + ", firstName=" + firstName + ", lastName=" + lastName
-				+ ", email=" + email + ", password=" + password + ", createdAt=" + createdAt + ", deleted=" + deleted
-				+ ", deletedDate=" + deletedDate + "]";
+				+ ", email=" + email + ", password=" + password + ", phone=" + phone + ", gender=" + gender
+				+ ", createdAt=" + createdAt + ", deleted=" + deleted + ", deletedDate=" + deletedDate + ", companys="
+				+ companys + "]";
 	}
 
 	@Override
@@ -153,6 +180,8 @@ public class User implements PersistenceBeanInterface<UserObject> {
 		userObject.setFirstName(getFirstName());
 		userObject.setLastName(getLastName());
 		userObject.setEmail(getEmail());
+		userObject.setPhone(getPhone());
+		userObject.setGender(getGender().getDescription());
 //		userObject.setPassword(getPassword());
 		userObject.setCreatedAt(getCreatedAt());
 		for(Company company : getCompanys()) {

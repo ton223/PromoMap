@@ -4,11 +4,13 @@ import javax.ws.rs.core.Response;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import br.com.promomap.beans.persistence.User;
 import br.com.promomap.beans.transport.TaskObject;
 import br.com.promomap.beans.transport.UserObject;
 import br.com.promomap.service.UserService;
@@ -44,6 +46,16 @@ public class UserRest {
 	@PostMapping("/logout")
 	public Response logout(@RequestHeader("token") String token) {
 		TaskObject task = this.userService.logout(token);
+		return Response.ok(task).build();
+	}
+	
+	@PutMapping("/edit")
+	public Response edit(@RequestHeader("token") String token, @RequestBody UserObject userEdited) {
+		if(token == null || token.equals("null") || token.isEmpty()) {
+			return Response.status(Response.Status.UNAUTHORIZED).build();
+		}
+		User user = userService.findUserBySessionToken(token);
+		TaskObject task = this.userService.edit(user, userEdited);
 		return Response.ok(task).build();
 	}
 

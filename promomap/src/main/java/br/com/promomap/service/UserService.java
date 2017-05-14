@@ -12,6 +12,7 @@ import br.com.promomap.beans.persistence.User;
 import br.com.promomap.beans.transport.TaskObject;
 import br.com.promomap.beans.transport.UserObject;
 import br.com.promomap.dao.UserDAO;
+import br.com.promomap.model.enums.GenderEnum;
 import br.com.promomap.utils.Utils;
 
 /**
@@ -88,6 +89,31 @@ public class UserService {
 		TaskObject task = new TaskObject();
 		task.setSuccess(true);
 		this.sessionService.closeSession(token);
+		return task;
+	}
+	
+	public TaskObject edit(User user, UserObject userEdited) {
+		TaskObject task = new TaskObject();
+		if(!user.getSuperId().equals(userEdited.getSuperId())) {
+			task.setSuccess(false);
+			task.setErrorMessage("Você não pode editar informações de outro usuário.");
+		}
+		try {
+			user.setFirstName(userEdited.getFirstName());
+			user.setLastName(userEdited.getLastName());
+			if(userEdited.getPassword() != null && !userEdited.getPassword().isEmpty()) {
+				user.setPassword(userEdited.getPassword());
+			}
+			user.setEmail(userEdited.getEmail());
+			user.setGender(GenderEnum.fromDescription(userEdited.getGender()));
+			user.setPhone(userEdited.getPhone());
+			
+			userDAO.save(user);
+		} catch (Exception e) {
+			task.setSuccess(false);
+			task.setErrorMessage(e.getMessage());
+		}
+		task.setSuccess(true);
 		return task;
 	}
 	

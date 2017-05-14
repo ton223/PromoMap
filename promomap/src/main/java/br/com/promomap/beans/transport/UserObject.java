@@ -22,6 +22,10 @@ public class UserObject {
 	
 	private Date createdAt;
 	
+	private String phone;
+	
+	private String gender;
+	
 	private Set<CompanyObject> companys;
 
 	public UserObject() {
@@ -88,10 +92,27 @@ public class UserObject {
 		this.companys = companys;
 	}
 
+	public String getPhone() {
+		return phone;
+	}
+
+	public void setPhone(String phone) {
+		this.phone = phone;
+	}
+
+	public String getGender() {
+		return gender;
+	}
+
+	public void setGender(String gender) {
+		this.gender = gender;
+	}
+
 	@Override
 	public String toString() {
 		return "UserObject [superId=" + superId + ", firstName=" + firstName + ", lastName=" + lastName + ", email="
-				+ email + ", password=" + password + ", createdAt=" + createdAt + "]";
+				+ email + ", password=" + password + ", createdAt=" + createdAt + ", phone=" + phone + ", gender="
+				+ gender + ", companys=" + companys + "]";
 	}
 	
 }
