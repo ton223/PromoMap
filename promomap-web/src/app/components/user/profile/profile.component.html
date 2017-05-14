@@ -1,0 +1,113 @@
+<div class="row">
+  <div class="col-xs-12 col-md-10 col-md-pull-1 col-md-push-1" >
+    <div class="panel panel-info">
+      <div class="panel-heading">
+        <h3 class="panel-title">
+        	<span *ngIf="!error">
+        	Perfil
+        	</span>
+        	<span class="alert-danger" *ngIf="error">
+               Erro: {{errorMessage}}
+            </span>
+        	<button *ngIf="!isEditing" type="button" (click)="setEditing()" class="btn btn-xs btn-default pull-right"><i class="glyphicon glyphicon-pencil"></i></button>
+        </h3>
+      </div>
+      <div class="panel-body">
+        <div class="row">
+          <div class="col-md-3" align="center"> 
+          	<img alt="User Pic" src="https://nationalmaglab.org/images/research/research_groups/cryogenics/avatar.png" class="img-circle img-responsive"> 
+          </div>
+          <div class=" col-md-9"> 
+          <form #registerForm="ngForm">
+            <table class="table table-user-information">
+              <tbody>
+                <tr>
+                  <td>Nome: </td>
+                  <td>
+                  	<div *ngIf="!isEditing">
+	                  {{user.firstName}} {{user.lastName}}
+	                </div>
+	                <div *ngIf="isEditing">
+	                	<div class="col-xs-6">
+		                  	<input id="firstName" class="input-sm form-control" type="text" name="firstName" placeholder="Nome" 
+							[(ngModel)]="userEdited.firstName" minlength="4" [attr.maxlength]="30" required>
+	                	</div>
+	                	<div class="col-xs-6">
+							<input id="lastName" class="input-sm form-control" type="text" name="lastName" placeholder="Sobrenome" 
+							[(ngModel)]="userEdited.lastName" minlength="4" [attr.maxlength]="30" required>
+	                	</div>
+	                </div>
+                  </td>
+                  <td>
+                  	
+                  </td>
+                </tr>
+                <tr>
+                  <td>Senha: </td>
+                  <td>
+	                  <div *ngIf="!isEditing">
+	                  	**********                  
+	                  </div>
+	                  <div *ngIf="isEditing" class="col-xs-12">
+						<input id="password" class="input-sm form-control" type="password" name="password" placeholder="**********" 
+						[(ngModel)]="userEdited.password" minlength="8" [attr.maxlength]="30">
+	                  </div>
+                  </td>
+                </tr>
+                <tr>
+                    <td>Genero</td>
+                    <td>
+                    	<div *ngIf="!isEditing">
+                    		{{user.gender}}
+		                </div>
+		                <div *ngIf="isEditing"  class="col-xs-12">
+		                    <select name="gender-select" [(ngModel)]="userEdited.gender">
+							  <option *ngFor="let g of genders" [ngValue]="g.description">{{g.description}}</option>
+							</select>
+		                </div>
+                    </td>
+                </tr>
+                <tr>
+                   <td>Email</td>
+                   <td>
+                   		<div *ngIf="!isEditing">
+		                   	<a href="mailto:{{user.email}}">{{user.email}}</a>
+		                </div>
+		                <div *ngIf="isEditing" class="col-xs-12">
+		                  	<input id="email" class="input-sm form-control" type="email" name="email" placeholder="exemplo@email.com" [(ngModel)]="userEdited.email" 
+							minlength="5"
+							[attr.maxlength]="70"
+							required>
+		                </div>
+                   </td>
+                </tr>
+                <tr>
+                   <td>Telefone:</td>
+                   <td>
+	                    <div *ngIf="!isEditing">
+		                   {{user.phone}}
+		                </div>
+		                <div *ngIf="isEditing" class="col-xs-12">
+		                  	<input id="phone" class="input-sm form-control" type="text" name="phone" placeholder="Telefone"
+							[(ngModel)]="userEdited.phone" minlength="4" [attr.maxlength]="30">
+		                </div>
+                   </td>
+                </tr>
+                <tr>
+                	<td></td>
+                   <td *ngIf="isEditing">
+	                   <div class="pull-right">
+	                		<button type="submit" [disabled]="!registerForm.form.valid" type="button" (click)="editUser()" class="btn btn-xs btn-success"><i class="glyphicon glyphicon-ok"></i></button>
+	                   		<button type="button" (click)="cancelEdit()" class="btn btn-xs btn-danger"><i class="glyphicon glyphicon-remove"></i></button>
+	                   </div>
+                   </td>
+                </tr>
+                </tbody>
+              </table>
+          </form>
+            </div>
+          </div>
+        </div>
+  	  </div>
+	</div>
+</div>

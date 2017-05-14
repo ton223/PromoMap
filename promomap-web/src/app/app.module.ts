@@ -14,12 +14,16 @@ import { LoginComponent } from './components/login/login.component';
 import { CreateCompanyComponent } from './components/company/create-company.component';
 import { MapComponent } from './components/map/map.component';
 import { MapMarkerComponent } from './components/map/map-marker.component';
+import { ProfileComponent } from './components/user/profile/profile.component';
+import { CompanysComponent } from './components/company/companys/companys.component';
+import { ProductsComponent } from './components/company/products/products.component';
 
 const appRoutes: Routes = [
   { path: 'home', component: HomeComponent },
   { path: 'register', component: RegisterComponent },
   { path: 'create-company', component:  CreateCompanyComponent},
-  { path: 'map-marker', component:  MapMarkerComponent}
+  { path: 'map-marker', component:  MapMarkerComponent},
+  { path: 'profile', component:  ProfileComponent},
 ];
 
 @NgModule({
@@ -31,7 +35,10 @@ const appRoutes: Routes = [
     SidebarComponent,
     CreateCompanyComponent,
     MapComponent,
-    MapMarkerComponent
+    MapMarkerComponent,
+    ProfileComponent,
+    CompanysComponent,
+    ProductsComponent
   ],
   imports: [
     BrowserModule,

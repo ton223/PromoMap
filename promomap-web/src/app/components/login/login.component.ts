@@ -38,7 +38,7 @@ export class LoginComponent implements OnInit {
           this.user = task.data;
           this.router.navigate(['home']);
         } else {
-
+          //dar erro
         }
       }
     );
@@ -60,5 +60,6 @@ export class LoginComponent implements OnInit {
         SessionDAO.clearSession();
       }
     );
+    this.router.navigate(['home']);
   }
 }

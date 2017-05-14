@@ -35,5 +35,12 @@ export class UserService {
       .then(this.utils.extractData)
       .catch(this.utils.handleError);
   }
+  
+    public edit(user: User): Promise<any> {
+    return this.http.put(this.path + 'edit', user,  this.utils.getHeaders())
+      .toPromise()
+      .then(this.utils.extractData)
+      .catch(this.utils.handleError);
+  }
 
 }

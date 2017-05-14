@@ -47,7 +47,7 @@
 				<span *ngIf="password.valid" class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span>
 			</span> 
 			<input id="password" class="input form-control" type="password" name="password" placeholder="Senha" 
-			[(ngModel)]="user.password" minlength="6" [attr.maxlength]="30" #password="ngModel" required>
+			[(ngModel)]="user.password" minlength="8" [attr.maxlength]="30" #password="ngModel" required>
 		</div>
 		<input type="checkbox" name="terms" id="terms" [(ngModel)]="terms" required> Aceito os termos.
 	</div>

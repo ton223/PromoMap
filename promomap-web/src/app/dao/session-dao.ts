@@ -3,9 +3,11 @@ import { Marker } from '../models/Marker';
 
 export class SessionDAO {
 
+  private static user: User;
+  
   public static hasToken(): boolean {
     const token = localStorage.getItem('token');
-    if (token !== undefined && token != null && token !== 'null' && token.length > 0) {
+    if (token !== undefined && token != null && token !== 'null' && token.length > 0 && token != 'undefined') {
       return true;
     } else {
       return false;
@@ -14,10 +16,15 @@ export class SessionDAO {
 
   public static setUser(user: User) {
     localStorage.setItem('user', JSON.stringify(user));
+    this.user = Object.assign(new User(), user);
   }
 
   public static getUser(): User {
-    return JSON.parse(localStorage.getItem('user'));
+    if(this.user != undefined && this.user != null) {
+      return this.user;
+    } else {
+      return JSON.parse(localStorage.getItem('user'));
+    }
   }
 
   public static setToken(token: string) {

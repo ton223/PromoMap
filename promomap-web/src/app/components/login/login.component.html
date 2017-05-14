@@ -1,9 +1,9 @@
 <div *ngIf="logged">
 	<ul class="nav navbar-nav">
-		<li class="dropdown"><a class="dropdown-toggle" href="#" data-toggle="dropdown">{{user.firstName}} {{user.lastName}}
-		<b class="caret"></b></a>
+		<li class="dropdown"><a class="dropdown-toggle" href="#" data-toggle="dropdown">{{user.firstName}}
+		<b class="glyphicon glyphicon-collapse-down"></b></a>
 			<ul class="dropdown-menu navbar-inverse">
-				<li><a class="user_dropdown" routerLink="create-company">Perfil</a></li>
+				<li><a class="user_dropdown" routerLink="profile">Perfil</a></li>
 				<li class="divider"></li>
 				<li><a class="user_dropdown" data-toggle="dropdown" href="#" (click)="logout()">Sair</a></li>
 			</ul>
