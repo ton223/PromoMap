@@ -1,4 +1,4 @@
-package br.com.promomap.controller;
+package br.com.promomap.controller.rest;
 
 import javax.ws.rs.core.Response;
 

@@ -2,12 +2,14 @@
  * @(#)CompanyRest.java 10 de mai de 2017 - 23:19:05
  *
  */
-package br.com.promomap.controller;
+package br.com.promomap.controller.rest;
 
 import javax.ws.rs.core.Response;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestHeader;
@@ -43,13 +45,26 @@ public class CompanyRest {
 		return Response.ok(task).build();
 	}
 
-	@GetMapping("/list")
+	@GetMapping()
 	public Response list(@RequestHeader("token") String token) {
 		if (token == null || token.equals("null") || token.isEmpty()) {
 			return Response.status(Response.Status.UNAUTHORIZED).build();
 		}
 		User user = this.userService.findUserBySessionToken(token);
 		TaskObject task = companyService.listByUser(user);
+		return Response.ok(task).build();
+	}
+	
+	@DeleteMapping("/{companyId}")
+	public Response delete(@RequestHeader("token") String token,@PathVariable("companyId") String companyId) {
+		if (token == null || token.equals("null") || token.isEmpty()) {
+			return Response.status(Response.Status.UNAUTHORIZED).build();
+		}
+		User user = this.userService.findUserBySessionToken(token);
+		if(user == null) {
+			return Response.status(Response.Status.UNAUTHORIZED).build();
+		}
+		TaskObject task = companyService.delete(companyId, user);
 		return Response.ok(task).build();
 	}
 }

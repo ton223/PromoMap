@@ -59,6 +59,21 @@ public class CompanyService {
 		return task;
 	}
 	
+	public TaskObject delete(String CompanySuperId, User user) {
+		TaskObject task = new TaskObject();
+		Company company = this.companyDAO.findBySuperId(CompanySuperId);
+		if(!company.getUser().getSuperId().equals(user.getSuperId())) {
+			task.setSuccess(false);
+			task.setErrorMessage("Você não é dono desta company");
+			return task;
+		}
+		company.setDeleted(true);
+		company.setDeletedDate(new Date());
+		this.companyDAO.save(company);
+		task.setSuccess(true);
+		return task;
+	}
+	
 	public TaskObject listByUser(User user) {
 		TaskObject task = new TaskObject();
 		try {
