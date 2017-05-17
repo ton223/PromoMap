@@ -4,6 +4,10 @@
  */
 package br.com.promomap.service;
 
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -37,6 +41,7 @@ public class CompanyService {
 			company.setCnpj(companyO.getCnpj());
 			company.setEmail(companyO.getEmail());
 			company.setPhone(companyO.getPhone());
+			company.setCreatedAt(new Date());
 			company.setUser(user);
 			Location location = new Location();
 			location.setSuperId(Utils.generateRandomUUID());
@@ -46,6 +51,23 @@ public class CompanyService {
 			company.setLocation(locationDAO.findBySuperId(location.getSuperId()));
 			companyDAO.save(company);
 //			task.setData(company.generateTransportObject());
+		} catch (Exception e) {
+			task.setSuccess(false);
+			task.setErrorMessage(e.getMessage());
+		}
+		task.setSuccess(true);
+		return task;
+	}
+	
+	public TaskObject listByUser(User user) {
+		TaskObject task = new TaskObject();
+		try {
+			List<CompanyObject> companysO = new ArrayList<CompanyObject>();
+			List<Company> companys = companyDAO.listByUser(user.getId());
+			for(Company c : companys) {
+				companysO.add(c.generateTransportObject());
+			}
+			task.setDataList(companysO);
 		} catch (Exception e) {
 			task.setSuccess(false);
 			task.setErrorMessage(e.getMessage());

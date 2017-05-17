@@ -8,7 +8,7 @@ import java.util.Collection;
 
 public class TaskObject {
 
-	private Collection<Object> dataList;
+	private Collection<?> dataList;
 
 	private Object data;
 
@@ -20,11 +20,11 @@ public class TaskObject {
 	
 	private String info;
 
-	public Collection<Object> getDataList() {
+	public Collection<?> getDataList() {
 		return dataList;
 	}
 
-	public void setDataList(Collection<Object> dataList) {
+	public void setDataList(Collection<?> dataList) {
 		this.dataList = dataList;
 	}
 

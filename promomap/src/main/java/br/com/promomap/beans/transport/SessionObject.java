@@ -2,13 +2,6 @@ package br.com.promomap.beans.transport;
 
 import java.util.Date;
 
-import javax.persistence.Column;
-import javax.persistence.ManyToOne;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
-
-import br.com.promomap.beans.persistence.User;
-
 /**
  * @author <a href="mailto:leandro.lucas_@hotmail.com">Leandro Lucas Santos</a>
  */

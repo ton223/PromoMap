@@ -8,6 +8,7 @@ import java.util.List;
 
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
+import org.springframework.data.repository.query.Param;
 
 import br.com.promomap.beans.persistence.Company;
 
@@ -20,5 +21,8 @@ public interface CompanyDAO extends CrudRepository<Company, Long>{
 	
 	@Query("from Company where deleted!=1")
 	public  List<Company> listAll();
+	
+	@Query("from Company where deleted!=1 and user_id=:id")
+	public List<Company> listByUser(@Param("id")Long id);
 
 }

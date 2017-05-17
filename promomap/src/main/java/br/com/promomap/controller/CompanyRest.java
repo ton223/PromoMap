@@ -7,6 +7,7 @@ package br.com.promomap.controller;
 import javax.ws.rs.core.Response;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestHeader;
@@ -25,20 +26,30 @@ import br.com.promomap.service.UserService;
 @RestController
 @RequestMapping("/company")
 public class CompanyRest {
-	
+
 	@Autowired
 	private CompanyService companyService;
-	
+
 	@Autowired
 	private UserService userService;
-	
-	@PostMapping("/create")
+
+	@PostMapping()
 	public Response create(@RequestHeader("token") String token, @RequestBody CompanyObject companyO) {
-		if(token == null || token.equals("null") || token.isEmpty()) {
+		if (token == null || token.equals("null") || token.isEmpty()) {
 			return Response.status(Response.Status.UNAUTHORIZED).build();
 		}
 		User user = this.userService.findUserBySessionToken(token);
 		TaskObject task = this.companyService.create(user, companyO);
+		return Response.ok(task).build();
+	}
+
+	@GetMapping("/list")
+	public Response list(@RequestHeader("token") String token) {
+		if (token == null || token.equals("null") || token.isEmpty()) {
+			return Response.status(Response.Status.UNAUTHORIZED).build();
+		}
+		User user = this.userService.findUserBySessionToken(token);
+		TaskObject task = companyService.listByUser(user);
 		return Response.ok(task).build();
 	}
 }

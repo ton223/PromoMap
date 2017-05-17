@@ -181,7 +181,7 @@ public class User implements PersistenceBeanInterface<UserObject> {
 		userObject.setLastName(getLastName());
 		userObject.setEmail(getEmail());
 		userObject.setPhone(getPhone());
-		userObject.setGender(getGender().getDescription());
+		userObject.setGender(getGender() == null ? null : getGender().getDescription());
 //		userObject.setPassword(getPassword());
 		userObject.setCreatedAt(getCreatedAt());
 		for(Company company : getCompanys()) {

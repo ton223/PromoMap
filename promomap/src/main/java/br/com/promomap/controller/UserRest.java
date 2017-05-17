@@ -31,7 +31,7 @@ public class UserRest {
 	// return userService.listAll();
 	// }
 
-	@PostMapping("/create")
+	@PostMapping()
 	public Response create(@RequestBody UserObject user) {
 		TaskObject task = this.userService.create(user);
 		return Response.ok(task).build();
@@ -49,7 +49,7 @@ public class UserRest {
 		return Response.ok(task).build();
 	}
 	
-	@PutMapping("/edit")
+	@PutMapping()
 	public Response edit(@RequestHeader("token") String token, @RequestBody UserObject userEdited) {
 		if(token == null || token.equals("null") || token.isEmpty()) {
 			return Response.status(Response.Status.UNAUTHORIZED).build();

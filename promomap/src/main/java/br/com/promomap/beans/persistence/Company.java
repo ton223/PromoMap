@@ -4,6 +4,8 @@
  */
 package br.com.promomap.beans.persistence;
 
+import java.util.Date;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -13,6 +15,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 import br.com.promomap.beans.transport.CompanyObject;
 import br.com.promomap.beans.transport.UserObject;
@@ -23,37 +27,48 @@ import br.com.promomap.model.PersistenceBeanInterface;
  */
 @Entity
 @Table(name = "Company")
-public class Company implements PersistenceBeanInterface<CompanyObject>{
+public class Company implements PersistenceBeanInterface<CompanyObject> {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
-	
+
 	@Column(name = "superId", nullable = false, unique = true)
 	private String superId;
 
 	@Column(name = "name")
 	private String name;
-	
+
 	@Column(name = "description")
 	private String description;
-	
+
 	@Column(name = "cnpj")
 	private String cnpj;
-	
+
 	@Column(name = "phone")
 	private String phone;
-	
+
 	@Column(name = "email")
 	private String email;
-	
+
 	@OneToOne
 	@JoinColumn(name = "location_id")
 	private Location location;
-	
+
 	@ManyToOne
 	@JoinColumn(name = "user_id")
 	private User user;
+
+	@Temporal(TemporalType.TIMESTAMP)
+	@Column(name = "createdAt")
+	private Date createdAt;
+
+	@Column(name = "deleted", columnDefinition = "tinyint DEFAULT 0")
+	private boolean deleted;
+
+	@Temporal(TemporalType.TIMESTAMP)
+	@Column(name = "deletedDate")
+	private Date deletedDate;
 
 	@Override
 	public CompanyObject generateTransportObject() {
@@ -64,12 +79,9 @@ public class Company implements PersistenceBeanInterface<CompanyObject>{
 		companyO.setCnpj(getCnpj());
 		companyO.setEmail(getEmail());
 		companyO.setPhone(getPhone());
-		companyO.setLocation(getLocation().generateTransportObject());
-		companyO.setUser(new UserObject()
-				.setSuperId(getUser().getSuperId())
-				.setFirstName(getUser().getFirstName())
-				.setLastName(getUser().getLastName())
-				.setEmail(getUser().getEmail()));
+		companyO.setLocation(getLocation() == null ? null : getLocation().generateTransportObject());
+		companyO.setUser(new UserObject().setSuperId(getUser().getSuperId()).setFirstName(getUser().getFirstName())
+				.setLastName(getUser().getLastName()).setEmail(getUser().getEmail()));
 		return companyO;
 	}
 
@@ -144,5 +156,29 @@ public class Company implements PersistenceBeanInterface<CompanyObject>{
 	public void setUser(User user) {
 		this.user = user;
 	}
-	
+
+	public Date getCreatedAt() {
+		return createdAt;
+	}
+
+	public void setCreatedAt(Date createdAt) {
+		this.createdAt = createdAt;
+	}
+
+	public boolean isDeleted() {
+		return deleted;
+	}
+
+	public void setDeleted(boolean deleted) {
+		this.deleted = deleted;
+	}
+
+	public Date getDeletedDate() {
+		return deletedDate;
+	}
+
+	public void setDeletedDate(Date deletedDate) {
+		this.deletedDate = deletedDate;
+	}
+
 }
