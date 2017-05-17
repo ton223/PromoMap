@@ -2,8 +2,12 @@
 	<div class="col-xs-12 col-md-10 col-md-pull-1 col-md-push-1">
 		<div class="panel panel-primary">
 			<div class="panel-heading">
-				<h3 class="panel-title">Meus estabeleciomentos
-					<button type="button" tooltip="Cadastrar" routerLink="/create-company" class="btn btn-xs btn-success pull-right"><i class="glyphicon glyphicon-plus"></i>Add</button>
+				<h3 class="panel-title">
+					<span *ngIf="!error">Meus estabeleciomentos</span>
+					<span class="alert-danger" *ngIf="error">
+		               Erro: {{errorMessage}}
+		            </span>
+					<button *ngIf="!error" type="button" tooltip="Cadastrar" routerLink="/create-company" class="btn btn-xs btn-success pull-right"><i class="glyphicon glyphicon-plus"></i>Add</button>
 				</h3>
 			</div>
 			<table class="table table-hover" id="dev-table" >
@@ -22,7 +26,7 @@
 						<td>{{company.cnpj}}</td>
 						<td>
 						<button type="button" tooltip="Cadastrar" class="btn btn-xs btn-info"><i class="glyphicon glyphicon-briefcase"></i></button>
-						<button type="button" tooltip="Cadastrar" class="btn btn-xs btn-danger"><i class="glyphicon glyphicon-trash"></i></button>
+						<button type="button" (click)="deleteCompany(company)" tooltip="deletar" class="btn btn-xs btn-danger"><i class="glyphicon glyphicon-trash"></i></button>
 						</td>
 					</tr>
 				</tbody>

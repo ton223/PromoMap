@@ -40,4 +40,29 @@ export class CompanysComponent implements OnInit {
     );
   }
 
+  public deleteCompany(company: any){
+
+  	this.companyService.delete(company.superId).then(
+      response => {
+        if (response.status === 200) {
+          const task = response.entity;
+          if (task.success) {
+          	let index = this.companys.indexOf(company);
+            this.companys.splice(index, 1);
+          } else {
+            this.error = true;
+            this.errorMessage = task.errorMessage;
+          }
+        } else {
+          this.error = true;
+          this.errorMessage = response.statusInfo;
+        }
+      },
+      error => {
+      	this.error = true;
+      	this.errorMessage = <any>error;
+      }
+    );
+  }
+
 }

@@ -23,7 +23,14 @@ export class CompanyService {
   }
 
   public list(): Promise<any> {
-    return this.http.get(this.path+'list', this.utils.getHeaders())
+    return this.http.get(this.path, this.utils.getHeaders())
+      .toPromise()
+      .then(this.utils.extractData)
+      .catch(this.utils.handleError);
+  }
+
+  public delete(companyId: string): Promise<any> {
+    return this.http.delete(this.path + companyId, this.utils.getHeaders())
       .toPromise()
       .then(this.utils.extractData)
       .catch(this.utils.handleError);

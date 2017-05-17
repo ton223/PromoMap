@@ -1,12 +1,21 @@
 import { Marker } from './Marker';
 
 export class Company {
+  private superId: string;
   private name: string;
   private description: string;
   private cnpj: string;
   private phone: string;
   private email: string;
   private location = new Marker();
+
+  public setSuperId(superId: string): void {
+    this.superId = superId;
+  }
+
+  public getSuperId(): string {
+    return this.superId;
+  }
 
   public setName(name: string): void {
     this.name = name;
