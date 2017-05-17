@@ -16,7 +16,7 @@ export class UserService {
   constructor(private http: Http) { }
 
   public create(user: User): Promise<any> {
-    return this.http.post(this.path + 'create', user, this.utils.getHeaders())
+    return this.http.post(this.path, user, this.utils.getHeaders())
       .toPromise()
       .then(this.utils.extractData)
       .catch(this.utils.handleError);
@@ -37,7 +37,7 @@ export class UserService {
   }
   
     public edit(user: User): Promise<any> {
-    return this.http.put(this.path + 'edit', user,  this.utils.getHeaders())
+    return this.http.put(this.path, user,  this.utils.getHeaders())
       .toPromise()
       .then(this.utils.extractData)
       .catch(this.utils.handleError);

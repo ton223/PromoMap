@@ -3,24 +3,27 @@
 		<div class="panel panel-primary">
 			<div class="panel-heading">
 				<h3 class="panel-title">Meus estabeleciomentos
-						<!-- botão de criar aqui com pull-ritht-->
+					<button type="button" tooltip="Cadastrar" routerLink="/create-company" class="btn btn-xs btn-success pull-right"><i class="glyphicon glyphicon-plus"></i>Add</button>
 				</h3>
 			</div>
-			<table class="table table-hover" id="dev-table">
+			<table class="table table-hover" id="dev-table" >
 				<thead>
 					<tr>
-						<th>Nome</th>
-						<th>E-mail</th>
-						<th>CNPJ</th>
-						<th>Ações</th>
+						<th>{{titles[0]}}</th>
+						<th>{{titles[1]}}</th>
+						<th>{{titles[2]}}</th>
+						<th>{{titles[3]}}</th>
 					</tr>
 				</thead>
 				<tbody>
-					<tr>
-						<td>Company1</td>
-						<td>exemplo@email.com</td>
-						<td>666666666</td>
-						<td> --- </td>
+					<tr *ngFor="let company of companys">
+						<td>{{company.name}}</td>
+						<td>{{company.description}}</td>
+						<td>{{company.cnpj}}</td>
+						<td>
+						<button type="button" tooltip="Cadastrar" class="btn btn-xs btn-info"><i class="glyphicon glyphicon-briefcase"></i></button>
+						<button type="button" tooltip="Cadastrar" class="btn btn-xs btn-danger"><i class="glyphicon glyphicon-trash"></i></button>
+						</td>
 					</tr>
 				</tbody>
 			</table>
