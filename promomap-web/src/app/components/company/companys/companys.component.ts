@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { CompanyService } from '../../../services/company-rest.service';
+import { Router } from '@angular/router';
 import { Company } from '../../../models/Company';
 
 @Component({
@@ -14,7 +15,7 @@ export class CompanysComponent implements OnInit {
 	private companys: Company[];
 
 	private titles = ["Nome", "Descrição", "CNPJ", "Ações"];
-  constructor(private companyService: CompanyService) { }
+  constructor(private companyService: CompanyService, private router: Router) { }
 
   ngOnInit() {
   	this.fetchCompanys();
@@ -41,7 +42,6 @@ export class CompanysComponent implements OnInit {
   }
 
   public deleteCompany(company: any){
-
   	this.companyService.delete(company.superId).then(
       response => {
         if (response.status === 200) {
@@ -63,6 +63,10 @@ export class CompanysComponent implements OnInit {
       	this.errorMessage = <any>error;
       }
     );
+  }
+
+  public companyAdmin(company: any) {
+  	this.router.navigate(['company-admin', company.superId]);
   }
 
 }

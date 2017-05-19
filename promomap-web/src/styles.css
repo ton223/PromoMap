@@ -1,1 +1,32 @@
-/* You can add global styles to this file, and also import other style files */
+.promomap-nav {
+	background-color: #262525;
+	color: white;
+	border-radius: 5px;
+}
+
+.promomap-nav a {
+	color: #ffaa00;
+}
+
+.promomap-nav .icon-bar {
+	color: white;
+  	border-color: white;
+  	background-color: white;
+}
+
+.promomap-header {
+	background-color: #e0e5e5;
+	border-radius: 10px;
+	padding-bottom: 20px;
+}
+
+.promomap-body {
+	background-color: #e0e5e5;
+	border-radius: 10px;
+	padding-top: 20px;
+	color: black;
+}
+
+.promomap-background {
+	background-color: gray;
+}

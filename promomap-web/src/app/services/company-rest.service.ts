@@ -36,4 +36,18 @@ export class CompanyService {
       .catch(this.utils.handleError);
   }
 
+  public edit(companyId: string, companyEdited: Company): Promise<any> {
+    return this.http.put(this.path + companyId, companyEdited, this.utils.getHeaders())
+      .toPromise()
+      .then(this.utils.extractData)
+      .catch(this.utils.handleError);
+  }
+
+  public findBySuperId(companyId: string): Promise<any> {
+    return this.http.get(this.path + companyId, this.utils.getHeaders())
+      .toPromise()
+      .then(this.utils.extractData)
+      .catch(this.utils.handleError);
+  }
+
 }

@@ -20,7 +20,7 @@ export class CreateCompanyComponent {
   private company = new Company();
   private coords: string;
 
-  constructor(private companyService: CompanyService) { }
+  constructor(private companyService: CompanyService, private router: Router) { }
 
   public create(): void {
     this.companyService.create(this.company).then(
@@ -29,6 +29,7 @@ export class CreateCompanyComponent {
           const task = response.entity;
           if (task.success) {
             this.created = true;
+            this.router.navigate(['/company-admin', task.data.superId])
           } else {
             this.error = true;
             this.errorMessage = task.errorMessage;

@@ -43,7 +43,10 @@ export class RegisterComponent {
           this.errorMessage = response.statusInfo;
         }
       },
-      error => this.errorMessage = <any>error
+      error => {
+        this.errorMessage = <any>error;
+        this.error = true;
+      }
     );
   }
 
