@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -55,8 +56,18 @@ public class CompanyRest {
 		return Response.ok(task).build();
 	}
 	
+	@GetMapping("/{companyId}")
+	public Response findBySuperId(@RequestHeader("token") String token,  @PathVariable("companyId") String companySuperId) {
+		if (token == null || token.equals("null") || token.isEmpty()) {
+			return Response.status(Response.Status.UNAUTHORIZED).build();
+		}
+		User user = this.userService.findUserBySessionToken(token);
+		TaskObject task = companyService.getBySuperId(user, companySuperId);
+		return Response.ok(task).build();
+	}
+	
 	@DeleteMapping("/{companyId}")
-	public Response delete(@RequestHeader("token") String token,@PathVariable("companyId") String companyId) {
+	public Response delete(@RequestHeader("token") String token, @PathVariable("companyId") String companyId) {
 		if (token == null || token.equals("null") || token.isEmpty()) {
 			return Response.status(Response.Status.UNAUTHORIZED).build();
 		}
@@ -65,6 +76,20 @@ public class CompanyRest {
 			return Response.status(Response.Status.UNAUTHORIZED).build();
 		}
 		TaskObject task = companyService.delete(companyId, user);
+		return Response.ok(task).build();
+	}
+	
+	@PutMapping("/{companyId}")
+	public Response edit(@RequestHeader("token") String token, @PathVariable("companyId") String companySuperId,
+			@RequestBody CompanyObject companyEdited) {
+		if (token == null || token.equals("null") || token.isEmpty()) {
+			return Response.status(Response.Status.UNAUTHORIZED).build();
+		}
+		User user = this.userService.findUserBySessionToken(token);
+		if(user == null) {
+			return Response.status(Response.Status.UNAUTHORIZED).build();
+		}
+		TaskObject task = companyService.edit(user, companySuperId, companyEdited);
 		return Response.ok(task).build();
 	}
 }

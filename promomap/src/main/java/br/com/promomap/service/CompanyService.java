@@ -50,10 +50,11 @@ public class CompanyService {
 			locationDAO.save(location);
 			company.setLocation(locationDAO.findBySuperId(location.getSuperId()));
 			companyDAO.save(company);
-//			task.setData(company.generateTransportObject());
+			task.setData(company.generateTransportObject());
 		} catch (Exception e) {
 			task.setSuccess(false);
 			task.setErrorMessage(e.getMessage());
+			return task;
 		}
 		task.setSuccess(true);
 		return task;
@@ -86,6 +87,45 @@ public class CompanyService {
 		} catch (Exception e) {
 			task.setSuccess(false);
 			task.setErrorMessage(e.getMessage());
+			return task;
+		}
+		task.setSuccess(true);
+		return task;
+	}
+	
+	public TaskObject edit(User user, String companySuperId, CompanyObject companyEdited) {
+		TaskObject task = new TaskObject();
+		Company company = this.companyDAO.findBySuperId(companySuperId);
+		if(!company.getUser().getSuperId().equals(user.getSuperId())) {
+			task.setSuccess(false);
+			task.setErrorMessage("Você não pode editar um estabelecimanto de outra pessoa");
+			return task;
+		}
+		company.setName(companyEdited.getName());
+		company.setCnpj(companyEdited.getCnpj());
+		company.setDescription(companyEdited.getDescription());
+		company.setEmail(companyEdited.getEmail());
+		company.setPhone(companyEdited.getPhone());
+		
+		this.companyDAO.save(company);
+		task.setSuccess(true);
+		return task;
+	}
+	
+	public TaskObject getBySuperId(User user, String companySuperId) {
+		TaskObject task = new TaskObject();
+		try {
+			Company company = this.companyDAO.findBySuperId(companySuperId);
+			if(!company.getUser().getSuperId().equals(user.getSuperId())) {
+				task.setSuccess(false);
+				task.setErrorMessage("Você não pode listar uma company que não é sua.");
+				return task;
+			}
+			task.setData(company.generateTransportObject());
+		} catch(Exception e) {
+			task.setSuccess(false);
+			task.setErrorMessage(e.getMessage());
+			return task;
 		}
 		task.setSuccess(true);
 		return task;
