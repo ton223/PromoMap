@@ -14,7 +14,7 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
 import br.com.promomap.beans.transport.SessionObject;
-import br.com.promomap.model.PersistenceBeanInterface;
+import br.com.promomap.model.TransportObjectInterface;
 
 /**
  * @author <a href="mailto:leandro.lucas_@hotmail.com">Leandro Lucas Santos</a>
@@ -22,7 +22,7 @@ import br.com.promomap.model.PersistenceBeanInterface;
 
 @Entity
 @Table(name = "Session")
-public class Session implements PersistenceBeanInterface<SessionObject> {
+public class Session implements TransportObjectInterface<SessionObject> {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)

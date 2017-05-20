@@ -19,8 +19,10 @@ import org.springframework.web.bind.annotation.RestController;
 
 import br.com.promomap.beans.persistence.User;
 import br.com.promomap.beans.transport.CompanyObject;
+import br.com.promomap.beans.transport.ProductObject;
 import br.com.promomap.beans.transport.TaskObject;
 import br.com.promomap.service.CompanyService;
+import br.com.promomap.service.ProductService;
 import br.com.promomap.service.UserService;
 
 /**
@@ -36,6 +38,9 @@ public class CompanyRest {
 	@Autowired
 	private UserService userService;
 
+	@Autowired
+	private ProductService productService;
+	
 	@PostMapping()
 	public Response create(@RequestHeader("token") String token, @RequestBody CompanyObject companyO) {
 		if (token == null || token.equals("null") || token.isEmpty()) {
@@ -90,6 +95,40 @@ public class CompanyRest {
 			return Response.status(Response.Status.UNAUTHORIZED).build();
 		}
 		TaskObject task = companyService.edit(user, companySuperId, companyEdited);
+		return Response.ok(task).build();
+	}
+	
+	@GetMapping("/{companyId}/product")
+	public Response listProducts(@RequestHeader("token") String token,  @PathVariable("companyId") String companySuperId) {
+		if (token == null || token.equals("null") || token.isEmpty()) {
+			return Response.status(Response.Status.UNAUTHORIZED).build();
+		}
+		User user = this.userService.findUserBySessionToken(token);
+		TaskObject task = productService.listByCompany(companySuperId, user);
+		return Response.ok(task).build();
+	}
+	
+	@PostMapping("/{companyId}/product")
+	public Response createProduct(@RequestHeader("token") String token,  @PathVariable("companyId") String companySuperId, @RequestBody ProductObject productO) {
+		if (token == null || token.equals("null") || token.isEmpty()) {
+			return Response.status(Response.Status.UNAUTHORIZED).build();
+		}
+		User user = this.userService.findUserBySessionToken(token);
+		TaskObject task = this.productService.create(companySuperId, productO, user);
+		return Response.ok(task).build();
+	}
+	
+	@DeleteMapping("/{companyId}/product/{productId}")
+	public Response deleteProduct(@RequestHeader("token") String token, @PathVariable("companyId") String companyId,
+			@PathVariable("productId") String productId) {
+		if (token == null || token.equals("null") || token.isEmpty()) {
+			return Response.status(Response.Status.UNAUTHORIZED).build();
+		}
+		User user = this.userService.findUserBySessionToken(token);
+		if(user == null) {
+			return Response.status(Response.Status.UNAUTHORIZED).build();
+		}
+		TaskObject task = this.productService.delete(productId, user);
 		return Response.ok(task).build();
 	}
 }

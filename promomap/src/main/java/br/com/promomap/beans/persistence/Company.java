@@ -20,14 +20,14 @@ import javax.persistence.TemporalType;
 
 import br.com.promomap.beans.transport.CompanyObject;
 import br.com.promomap.beans.transport.UserObject;
-import br.com.promomap.model.PersistenceBeanInterface;
+import br.com.promomap.model.TransportObjectInterface;
 
 /**
  * @author <a href="mailto:leandro.lucas_@hotmail.com">Leandro Lucas Santos</a>
  */
 @Entity
 @Table(name = "Company")
-public class Company implements PersistenceBeanInterface<CompanyObject> {
+public class Company implements TransportObjectInterface<CompanyObject> {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)

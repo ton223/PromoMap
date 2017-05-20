@@ -12,14 +12,14 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 import br.com.promomap.beans.transport.LocationObject;
-import br.com.promomap.model.PersistenceBeanInterface;
+import br.com.promomap.model.TransportObjectInterface;
 
 /**
  * @author <a href="mailto:leandro.lucas_@hotmail.com">Leandro Lucas Santos</a>
  */
 @Entity
 @Table(name = "Location")
-public class Location implements PersistenceBeanInterface<LocationObject> {
+public class Location implements TransportObjectInterface<LocationObject> {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)

@@ -17,7 +17,7 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
 import br.com.promomap.beans.transport.UserObject;
-import br.com.promomap.model.PersistenceBeanInterface;
+import br.com.promomap.model.TransportObjectInterface;
 import br.com.promomap.model.enums.GenderEnum;
 
 /**
@@ -26,7 +26,7 @@ import br.com.promomap.model.enums.GenderEnum;
 
 @Entity
 @Table(name = "User")
-public class User implements PersistenceBeanInterface<UserObject> {
+public class User implements TransportObjectInterface<UserObject> {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
