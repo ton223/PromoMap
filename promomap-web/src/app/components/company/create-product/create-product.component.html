@@ -1,0 +1,50 @@
+<button [hidden]="true" id="openModalButton" data-toggle="modal" data-target="#createProductModal"></button>
+
+<div class="modal fade" id="createProductModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Cadastre seu produto
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+        </h5>
+      </div>
+      <div class="modal-body">
+        <div class="row">
+			<div class="alert alert-success" *ngIf="created">
+				<span>
+					Seu estabelicimanto foi cadastrado com sucesso.
+				</span>
+			</div>
+			<form #registerForm="ngForm" class="form-group text-center row"  *ngIf="!created">
+				<div class="alert alert-danger"  *ngIf="error">
+				<span>
+					Erro: {{errorMessage}}
+				</span>
+			</div>
+				<h3>Registre seu estabelecimento!</h3>
+				<br>
+				<div class="row">
+					<div class="form-group input-group col-xs-10 col-xs-pull-1 col-xs-push-1 col-md-8 col-md-pull-2 col-md-push-2">
+						<span class="input-group-addon">
+							<span *ngIf="!name.valid" class="glyphicon glyphicon-briefcase" aria-hidden="true"></span>
+							<span *ngIf="name.valid" class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span>
+						</span> 
+						<input id="name" class="input form-control" type="text" name="name" placeholder="Nome" 
+						 minlength="4" [(ngModel)]="test" [attr.maxlength]="30" #name="ngModel" required> <!---->
+					</div>
+				    <input type="checkbox" name="terms" id="terms" [(ngModel)]="terms" required> Aceito os termos.
+				</div>
+				<br>
+				<button type="submit" [disabled]="!registerForm.form.valid" class="btn btn-success" (click)="create()">Criar</button>
+			</form>
+		</div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Cadastrar</button>
+      </div>
+    </div>
+  </div>
+</div>

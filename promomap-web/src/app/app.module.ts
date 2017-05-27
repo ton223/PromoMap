@@ -18,6 +18,7 @@ import { ProfileComponent } from './components/user/profile/profile.component';
 import { CompanysComponent } from './components/company/companys/companys.component';
 import { ProductsComponent } from './components/company/products/products.component';
 import { CompanyAdminComponent } from './components/company/company-admin/company-admin.component';
+import { CreateProductComponent } from './components/company/create-product/create-product.component';
 
 const appRoutes: Routes = [
   { path: 'home', component: HomeComponent },
@@ -25,7 +26,7 @@ const appRoutes: Routes = [
   { path: 'create-company', component:  CreateCompanyComponent},
   { path: 'map-marker', component:  MapMarkerComponent},
   { path: 'profile', component:  ProfileComponent},
-  { path: 'company-admin/:id', component:  CompanyAdminComponent},
+  { path: 'company-admin/:id', component:  CompanyAdminComponent}
 ];
 
 @NgModule({
@@ -41,7 +42,8 @@ const appRoutes: Routes = [
     ProfileComponent,
     CompanysComponent,
     ProductsComponent,
-    CompanyAdminComponent
+    CompanyAdminComponent,
+    CreateProductComponent
   ],
   imports: [
     BrowserModule,

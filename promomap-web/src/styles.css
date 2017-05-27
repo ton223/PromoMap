@@ -30,3 +30,7 @@
 .promomap-background {
 	background-color: gray;
 }
+
+.modal-backdrop {
+  z-index: -1;
+}

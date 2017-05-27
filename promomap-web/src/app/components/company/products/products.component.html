@@ -2,8 +2,8 @@
 	<div class="col-xs-12 col-md-10 col-md-pull-1 col-md-push-1">
 		<div class="panel panel-warning">
 			<div class="panel-heading">
-				<h3 class="panel-title">{{title}}
-					<!-- botão de criar aqui com pull-right-->
+				<h3 class="panel-title">Produtos
+					<button *ngIf="!error" type="button" tooltip="Cadastrar" (click)="openCreateProductModal()" class="btn btn-xs btn-success pull-right"><i class="glyphicon glyphicon-plus"></i>Add</button>
 				</h3>
 			</div>
 			<table class="table table-hover" id="task-table">
@@ -27,3 +27,4 @@
 		</div>
 	</div>
 </div>
+<app-create-product></app-create-product>
