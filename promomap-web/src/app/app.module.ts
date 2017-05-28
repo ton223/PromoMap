@@ -8,11 +8,12 @@ import { Cloudinary } from 'cloudinary-core';
 import { CloudinaryModule } from '@cloudinary/angular';
 import { FileUploadModule } from "ng2-file-upload";
 
+import { TooltipModule } from "ngx-tooltip";
+
 import { AgmCoreModule } from 'angular2-google-maps/core';
 
 import { AppComponent } from './app.component';
 import { HomeComponent } from './components/home/home.component';
-import { SidebarComponent } from './components/sidebar/sidebar.component';
 import { RegisterComponent } from './components/register/register.component';
 import { LoginComponent } from './components/login/login.component';
 import { CreateCompanyComponent } from './components/company/create-company.component';
@@ -43,7 +44,6 @@ export const cloudinaryLib = {
     HomeComponent,
     RegisterComponent,
     LoginComponent,
-    SidebarComponent,
     CreateCompanyComponent,
     MapComponent,
     MapMarkerComponent,
@@ -66,7 +66,8 @@ export const cloudinaryLib = {
     FormsModule,
     ReactiveFormsModule,
     CloudinaryModule.forRoot(cloudinaryLib, { cloud_name: 'luk40cloud'}),
-    FileUploadModule
+    FileUploadModule,
+    TooltipModule
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -1,0 +1,8 @@
+
+.gallery-item {
+    border-width: 1px;
+    margin-bottom: 5px;
+    padding: 5px;
+    text-align: center;
+    cursor: pointer;
+}
