@@ -31,7 +31,7 @@
 					<span *ngIf="!description.valid" class="glyphicon glyphicon-align-center" aria-hidden="true"></span>
 					<span *ngIf="description.valid" class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span>
 				</span> 
-				<input id="description" class="input form-control" type="text" name="description" placeholder="Descrição"
+				<input id="description" class="input form-control" type="text" name="description" placeholder="DescriÃ§Ã£o"
 				[(ngModel)]="company.description" minlength="4" [attr.maxlength]="200" #description="ngModel" required>
 			</div>
 			<div class="form-group input-group col-xs-10 col-xs-pull-1 col-xs-push-1 col-md-8 col-md-pull-2 col-md-push-2">
@@ -39,7 +39,7 @@
 					<span *ngIf="!cnpj.valid" class="glyphicon glyphicon-tag" aria-hidden="true"></span>
 					<span *ngIf="cnpj.valid" class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span>
 				</span> 
-				<input id="cnpj" class="input form-control" type="text" name="cnpj" placeholder="CNPJ" pattern="[0-9]+$" title="Digite apenas números"
+				<input id="cnpj" class="input form-control" type="text" name="cnpj" placeholder="CNPJ" pattern="[0-9]+$" title="Digite apenas nÃºmeros"
 				[(ngModel)]="company.cnpj" minlength="4" [attr.maxlength]="30" #cnpj="ngModel" required>
 			</div>
 			<div class="form-group input-group col-xs-10 col-xs-pull-1 col-xs-push-1 col-md-8 col-md-pull-2 col-md-push-2">

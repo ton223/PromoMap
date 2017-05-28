@@ -10,17 +10,21 @@
 				<thead>
 					<tr>
 						<th>Nome</th>
-						<th>Categoria</th>
-						<th>Pre�o</th>
-						<th>A��es</th>
+						<th>Descrição</th>
+						<th>Código</th>
+						<th>Preço</th>
+						<th>Ações</th>
 					</tr>
 				</thead>
 				<tbody>
-					<tr>
-						<td>Nome do produto</td>
-						<td>lanche</td>
-						<td>1,99</td>
-						<td>---</td>
+					<tr *ngFor="let product of products">
+						<td>{{product.name}}</td>
+						<td>{{product.description}}</td>
+						<td>{{product.code}}</td>
+						<td>R$ {{product.price}}</td>
+						<td>
+							<button type="button" (click)="deleteProduct(product)" tooltip="deletar" class="btn btn-xs btn-danger"><i class="glyphicon glyphicon-trash"></i></button>
+						</td>
 					</tr>
 				</tbody>
 			</table>

@@ -14,7 +14,6 @@ export class CompanysComponent implements OnInit {
 	private errorMessage: string;
 	private companys: Company[];
 
-	private titles = ["Nome", "Descrição", "CNPJ", "Ações"];
   constructor(private companyService: CompanyService, private router: Router) { }
 
   ngOnInit() {

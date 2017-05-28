@@ -4,6 +4,10 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import { RouterModule, Routes } from '@angular/router';
 
+import { Cloudinary } from 'cloudinary-core';
+import { CloudinaryModule } from '@cloudinary/angular';
+import { FileUploadModule } from "ng2-file-upload";
+
 import { AgmCoreModule } from 'angular2-google-maps/core';
 
 import { AppComponent } from './app.component';
@@ -28,6 +32,10 @@ const appRoutes: Routes = [
   { path: 'profile', component:  ProfileComponent},
   { path: 'company-admin/:id', component:  CompanyAdminComponent}
 ];
+
+export const cloudinaryLib = {
+  Cloudinary: Cloudinary
+};
 
 @NgModule({
   declarations: [
@@ -56,9 +64,12 @@ const appRoutes: Routes = [
     }),
     BrowserModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    CloudinaryModule.forRoot(cloudinaryLib, { cloud_name: 'luk40cloud'}),
+    FileUploadModule
   ],
   providers: [],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
+

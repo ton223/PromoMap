@@ -4,46 +4,77 @@
   <div class="modal-dialog modal-lg" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Cadastre seu produto
+        <h3 class="modal-title" id="exampleModalLabel">Cadastre seu produto
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
-        </h5>
+        </h3>
       </div>
       <div class="modal-body">
         <div class="row">
-			<div class="alert alert-success" *ngIf="created">
-				<span>
-					Seu estabelicimanto foi cadastrado com sucesso.
-				</span>
-			</div>
-			<form #registerForm="ngForm" class="form-group text-center row"  *ngIf="!created">
-				<div class="alert alert-danger"  *ngIf="error">
-				<span>
-					Erro: {{errorMessage}}
-				</span>
-			</div>
-				<h3>Registre seu estabelecimento!</h3>
-				<br>
-				<div class="row">
-					<div class="form-group input-group col-xs-10 col-xs-pull-1 col-xs-push-1 col-md-8 col-md-pull-2 col-md-push-2">
-						<span class="input-group-addon">
-							<span *ngIf="!name.valid" class="glyphicon glyphicon-briefcase" aria-hidden="true"></span>
-							<span *ngIf="name.valid" class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span>
-						</span> 
-						<input id="name" class="input form-control" type="text" name="name" placeholder="Nome" 
-						 minlength="4" [(ngModel)]="test" [attr.maxlength]="30" #name="ngModel" required> <!---->
+					<div class="alert alert-success" *ngIf="created">
+					<span>
+						Seu produto foi cadastrado com sucesso.
+					</span>
 					</div>
-				    <input type="checkbox" name="terms" id="terms" [(ngModel)]="terms" required> Aceito os termos.
+					<form #registerForm="ngForm" class="form-group text-center row"  *ngIf="!created">
+						<div class="alert alert-danger"  *ngIf="error">
+						<span>
+							Erro: {{errorMessage}}
+						</span>
+					</div>
+						<div class="row">
+							<div class="row">
+								<div class="form-group col-xs-6 col-xs-pull-3 col-xs-push-3">
+									<div class="hover">
+									<img alt="Product Image" [src]="imageURL"  class="img-circle" (click)="openFileSelect()" height="200" width="200">
+									<div class="tooltip">Clique para alterar a imagem</div>
+									</div>
+									<input readonly id="fileSelect" class="fileSelectStyle" (change)="onFileChange($event)" type="file" ng2FileSelect [uploader]="uploader"/>
+								</div>
+							</div>
+							<div class="form-group input-group col-xs-10 col-xs-pull-1 col-xs-push-1 col-md-8 col-md-pull-2 col-md-push-2">
+								<span class="input-group-addon">
+									<span *ngIf="!name.valid" class="glyphicon glyphicon-tag" aria-hidden="true"></span>
+									<span *ngIf="name.valid" class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span>
+								</span> 
+								<input id="name" [disabled]="registering" class="input form-control" type="text" name="name" placeholder="Nome" 
+								minlength="4" [(ngModel)]="product.name" [attr.maxlength]="30" #name="ngModel" required>
+							</div>
+							<div class="form-group input-group col-xs-10 col-xs-pull-1 col-xs-push-1 col-md-8 col-md-pull-2 col-md-push-2">
+								<span class="input-group-addon">
+									<span class="glyphicon glyphicon-barcode text-success" aria-hidden="true"></span>
+								</span> 
+								<input id="code" [disabled]="registering" class="input form-control" type="text" name="code" placeholder="Código do produto (opcional)" 
+								minlength="4" [(ngModel)]="product.code" [attr.maxlength]="30">
+							</div>
+							<div class="form-group input-group col-xs-10 col-xs-pull-1 col-xs-push-1 col-md-8 col-md-pull-2 col-md-push-2">
+								<span class="input-group-addon">
+									<span class="glyphicon glyphicon-align-center text-success" aria-hidden="true"></span>
+								</span> 
+								<input id="description" [disabled]="registering" class="input form-control" type="text" name="description" placeholder="Descrição (opcional)" 
+								minlength="4" [(ngModel)]="product.description" [attr.maxlength]="30">
+							</div>
+							<div class="form-group input-group col-xs-10 col-xs-pull-1 col-xs-push-1 col-md-8 col-md-pull-2 col-md-push-2">
+								<span class="input-group-addon">
+									<span *ngIf="!price.valid" class="glyphicon glyphicon-usd" aria-hidden="true"></span>
+									<span *ngIf="price.valid" class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span>
+								</span> 
+								<input id="price" [disabled]="registering" class="input form-control" type="number" name="price" placeholder="Preço" 
+								minlength="4" [(ngModel)]="product.price" [attr.maxlength]="30" #price="ngModel" required>
+							</div>
+						</div>
+						<br>
+						<div class="row">
+						  <div class="col-xs-8 col-xs-push-2"> 
+								<button id="closeButton" type="button" [disabled]="registering" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+								<button type="submit" [disabled]="!registerForm.form.valid || registering" class="btn btn-success" (click)="registerProduct($event)">
+									<i class="fa fa-plus" *ngIf="!registering" aria-hidden="true"></i>
+									<i class="fa fa-spinner fa-spin" *ngIf="registering" aria-hidden="true"></i> Cadastrar</button>
+							</div>
+						</div>
+					</form>
 				</div>
-				<br>
-				<button type="submit" [disabled]="!registerForm.form.valid" class="btn btn-success" (click)="create()">Criar</button>
-			</form>
-		</div>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Cadastrar</button>
       </div>
     </div>
   </div>

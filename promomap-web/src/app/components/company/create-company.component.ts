@@ -3,12 +3,13 @@ import { Router } from '@angular/router';
 import { Company } from '../../models/Company';
 import { MapMarkerComponent } from '../map/map-marker.component';
 import { CompanyService } from '../../services/company-rest.service';
+import { ImageService } from '../../services/image-rest.service';
 
 @Component({
   selector: 'app-create-company',
   templateUrl: './create-company.component.html',
   styleUrls: ['./create-company.component.css'],
-  providers: [CompanyService]
+  providers: [CompanyService, ImageService]
 })
 export class CreateCompanyComponent {
   private error: boolean;

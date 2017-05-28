@@ -6,6 +6,7 @@ import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/toPromise';
 
 import { Company } from '../models/Company';
+import { Product } from '../models/Product';
 import { Utils } from '../utils/utils';
 
 @Injectable()
@@ -50,4 +51,24 @@ export class CompanyService {
       .catch(this.utils.handleError);
   }
 
+  public registerProduct(companyId: string, product: Product): Promise<any> {
+    return this.http.post(this.path + companyId + '/product', product, this.utils.getHeaders())
+      .toPromise()
+      .then(this.utils.extractData)
+      .catch(this.utils.handleError);
+  }
+
+  public listProducts(companyId: string): Promise<any> {
+    return this.http.get(this.path + companyId +'/product', this.utils.getHeaders())
+      .toPromise()
+      .then(this.utils.extractData)
+      .catch(this.utils.handleError);
+  }
+
+  public deleteProduct(companyId: string, productId: string) {
+    return this.http.delete(this.path + companyId +'/product/'+productId, this.utils.getHeaders())
+      .toPromise()
+      .then(this.utils.extractData)
+      .catch(this.utils.handleError);
+  }
 }
