@@ -19,6 +19,6 @@ public interface ProductDAO extends CrudRepository<Product, Long> {
 
 	public Product findBySuperId(String superId);
 	
-	@Query("from Product where deleted!=1 and user_id=:id")
+	@Query("from Product where deleted!=1 and company_id=:id")
 	public List<Product> listByCompany(@Param("id")Long companyId);
 }

@@ -38,6 +38,9 @@ public class Product implements TransportObjectInterface<ProductObject> {
 	@Column(name = "superId", nullable = false, unique = true)
 	private String superId;
 
+	@Column(name = "imagePublicId")
+	private String imagePublicId;
+
 	@Column(name = "code")
 	private String code;
 
@@ -47,7 +50,7 @@ public class Product implements TransportObjectInterface<ProductObject> {
 	@Column(name = "description")
 	private String description;
 
-	@Column(name = "price", precision = 9)
+	@Column(name = "price")
 	private BigDecimal price;
 
 	@Column(name = "rating")
@@ -89,6 +92,14 @@ public class Product implements TransportObjectInterface<ProductObject> {
 
 	public void setSuperId(String superId) {
 		this.superId = superId;
+	}
+
+	public String getImagePublicId() {
+		return imagePublicId;
+	}
+
+	public void setImagePublicId(String imagePublicId) {
+		this.imagePublicId = imagePublicId;
 	}
 
 	public String getCode() {
@@ -175,6 +186,7 @@ public class Product implements TransportObjectInterface<ProductObject> {
 	public ProductObject generateTransportObject() {
 		ProductObject productO = new ProductObject();
 		productO.setSuperId(getSuperId());
+		productO.setImagePublicId(getImagePublicId());
 		productO.setName(getName());
 		productO.setDescription(getDescription());
 		productO.setPrice(getPrice());

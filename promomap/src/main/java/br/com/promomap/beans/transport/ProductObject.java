@@ -13,6 +13,8 @@ public class ProductObject {
 
 	private String superId;
 
+	private String imagePublicId;
+
 	private String code;
 
 	private String name;
@@ -31,6 +33,14 @@ public class ProductObject {
 
 	public void setSuperId(String superId) {
 		this.superId = superId;
+	}
+
+	public String getImagePublicId() {
+		return imagePublicId;
+	}
+
+	public void setImagePublicId(String imagePublicId) {
+		this.imagePublicId = imagePublicId;
 	}
 
 	public String getCode() {

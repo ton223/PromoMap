@@ -63,6 +63,7 @@ public class ProductService {
 		}
 		Product product = new Product();
 		product.setSuperId(Utils.generateRandomUUID());
+		product.setImagePublicId(productO.getImagePublicId());
 		product.setName(productO.getName());
 		product.setDescription(productO.getDescription());
 		product.setCode(productO.getCode());
