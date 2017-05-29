@@ -8,6 +8,7 @@ export class Product {
 	private description: string;
 	private price: number;
 	private rating: number;
+	private category: string;
 	private company: Company;
 
     public getSuperId() {
@@ -64,6 +65,14 @@ export class Product {
 
 	public setRating(rating: number) {
 		this.rating = rating;
+	}
+
+	public getCategory(): string {
+		return this.category;
+	}
+
+	public setCategory(category: string) {
+		this.category = category;
 	}
 
 	public getCompany(): Company {

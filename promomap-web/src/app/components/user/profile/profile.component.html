@@ -30,11 +30,11 @@
 	                <div *ngIf="isEditing">
 	                	<div class="col-xs-6">
 		                  	<input id="firstName" class="input-sm form-control" type="text" name="firstName" placeholder="Nome" 
-							[(ngModel)]="userEdited.firstName" minlength="4" [attr.maxlength]="30" required>
+													[(ngModel)]="userEdited.firstName" minlength="4" [attr.maxlength]="30" required>
 	                	</div>
 	                	<div class="col-xs-6">
-							<input id="lastName" class="input-sm form-control" type="text" name="lastName" placeholder="Sobrenome" 
-							[(ngModel)]="userEdited.lastName" minlength="4" [attr.maxlength]="30" required>
+											<input id="lastName" class="input-sm form-control" type="text" name="lastName" placeholder="Sobrenome" 
+											[(ngModel)]="userEdited.lastName" minlength="4" [attr.maxlength]="30" required>
 	                	</div>
 	                </div>
                   </td>
@@ -49,8 +49,8 @@
 	                  	**********                  
 	                  </div>
 	                  <div *ngIf="isEditing" class="col-xs-12">
-						<input id="password" class="input-sm form-control" type="password" name="password" placeholder="**********" 
-						[(ngModel)]="userEdited.password" minlength="8" [attr.maxlength]="30">
+											<input id="password" class="input-sm form-control" type="password" name="password" placeholder="**********" 
+											[(ngModel)]="userEdited.password" minlength="8" [attr.maxlength]="30">
 	                  </div>
                   </td>
                 </tr>
@@ -62,8 +62,8 @@
 		                </div>
 		                <div *ngIf="isEditing"  class="col-xs-12">
 		                    <select name="gender-select" [(ngModel)]="userEdited.gender">
-							  <option *ngFor="let g of genders" [ngValue]="g.description">{{g.description}}</option>
-							</select>
+													<option *ngFor="let g of genders" [ngValue]="g.description">{{g.description}}</option>
+												</select>
 		                </div>
                     </td>
                 </tr>
@@ -75,9 +75,9 @@
 		                </div>
 		                <div *ngIf="isEditing" class="col-xs-12">
 		                  	<input id="email" class="input-sm form-control" type="email" name="email" placeholder="exemplo@email.com" [(ngModel)]="userEdited.email" 
-							minlength="5"
-							[attr.maxlength]="70"
-							required>
+													minlength="5"
+													[attr.maxlength]="70"
+													required>
 		                </div>
                    </td>
                 </tr>
@@ -89,7 +89,7 @@
 		                </div>
 		                <div *ngIf="isEditing" class="col-xs-12">
 		                  	<input id="phone" class="input-sm form-control" type="text" name="phone" placeholder="Telefone"
-							[(ngModel)]="userEdited.phone" minlength="4" [attr.maxlength]="30">
+												[(ngModel)]="userEdited.phone" minlength="4" [attr.maxlength]="30">
 		                </div>
                    </td>
                 </tr>

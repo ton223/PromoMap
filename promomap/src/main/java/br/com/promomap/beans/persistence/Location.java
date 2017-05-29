@@ -4,12 +4,16 @@
  */
 package br.com.promomap.beans.persistence;
 
+import java.util.Date;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 import br.com.promomap.beans.transport.LocationObject;
 import br.com.promomap.model.TransportObjectInterface;
@@ -33,6 +37,13 @@ public class Location implements TransportObjectInterface<LocationObject> {
 	
 	@Column(name = "longitude", nullable = false)
 	private String lng;
+	
+	@Column(name = "deleted", columnDefinition = "tinyint DEFAULT 0")
+	private boolean deleted;
+
+	@Temporal(TemporalType.TIMESTAMP)
+	@Column(name = "deletedDate")
+	private Date deletedDate;
 
 	@Override
 	public LocationObject generateTransportObject() {
@@ -73,5 +84,21 @@ public class Location implements TransportObjectInterface<LocationObject> {
 
 	public void setLng(String lng) {
 		this.lng = lng;
+	}
+
+	public boolean isDeleted() {
+		return deleted;
+	}
+
+	public void setDeleted(boolean deleted) {
+		this.deleted = deleted;
+	}
+
+	public Date getDeletedDate() {
+		return deletedDate;
+	}
+
+	public void setDeletedDate(Date deletedDate) {
+		this.deletedDate = deletedDate;
 	}
 }

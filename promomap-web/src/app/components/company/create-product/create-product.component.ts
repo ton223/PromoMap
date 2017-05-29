@@ -22,6 +22,20 @@ export class CreateProductComponent implements OnInit {
   private imageURL: string;
   private registering: boolean;
 
+  private categorys = [
+    "Eletrônicos e celulares",
+    "Eletrodomésticos",
+    "Alimentação",
+    "Brinquedos",
+    "Jogos",
+    "Veículos e barcos",
+    "Esporte",
+    "Moda e beleza",
+    "Bebês e crianças",
+    "Para a sua casa",
+    "Músicas e hobbies"
+  ];
+
   private uploader:FileUploader = new FileUploader({url: URL});
 
   private product = new Product();

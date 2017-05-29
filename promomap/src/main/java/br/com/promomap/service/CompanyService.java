@@ -17,7 +17,6 @@ import br.com.promomap.beans.persistence.User;
 import br.com.promomap.beans.transport.CompanyObject;
 import br.com.promomap.beans.transport.TaskObject;
 import br.com.promomap.dao.CompanyDAO;
-import br.com.promomap.dao.LocationDAO;
 import br.com.promomap.utils.Utils;
 
 /**
@@ -29,7 +28,16 @@ public class CompanyService {
 	@Autowired
 	private CompanyDAO companyDAO;
 	
-	@Autowired LocationDAO locationDAO;
+	@Autowired
+	private LocationService locationService;
+	
+	public Company findBySuperId(String superId) {
+		return companyDAO.findBySuperId(superId);
+	}
+	
+	public Company findByLocation(Location location) {
+		return this.companyDAO.findByLocationId(location.getId());
+	}
 	
 	public TaskObject create(User user, CompanyObject companyO) {
 		TaskObject task = new TaskObject();
@@ -43,12 +51,8 @@ public class CompanyService {
 			company.setPhone(companyO.getPhone());
 			company.setCreatedAt(new Date());
 			company.setUser(user);
-			Location location = new Location();
-			location.setSuperId(Utils.generateRandomUUID());
-			location.setLat(companyO.getLocation().getLat());
-			location.setLng(companyO.getLocation().getLng());
-			locationDAO.save(location);
-			company.setLocation(locationDAO.findBySuperId(location.getSuperId()));
+			Location location = this.locationService.create(companyO.getLocation());
+			company.setLocation(location);
 			companyDAO.save(company);
 			task.setData(company.generateTransportObject());
 		} catch (Exception e) {
@@ -68,6 +72,7 @@ public class CompanyService {
 			task.setErrorMessage("Você não é dono desta company");
 			return task;
 		}
+		this.locationService.delete(company.getLocation());
 		company.setDeleted(true);
 		company.setDeletedDate(new Date());
 		this.companyDAO.save(company);

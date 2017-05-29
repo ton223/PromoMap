@@ -4,7 +4,6 @@
  */
 package br.com.promomap.beans.transport;
 
-
 /**
  * @author <a href="mailto:leandro.lucas_@hotmail.com">Leandro Lucas Santos</a>
  */
@@ -12,17 +11,17 @@ public class CompanyObject {
 	private String superId;
 
 	private String name;
-	
+
 	private String description;
-	
+
 	private String cnpj;
-	
+
 	private String phone;
-	
+
 	private String email;
-	
+
 	private LocationObject location;
-	
+
 	private UserObject user;
 
 	public String getSuperId() {
@@ -88,4 +87,30 @@ public class CompanyObject {
 	public void setUser(UserObject user) {
 		this.user = user;
 	}
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((superId == null) ? 0 : superId.hashCode());
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		CompanyObject other = (CompanyObject) obj;
+		if (superId == null) {
+			if (other.superId != null)
+				return false;
+		} else if (!superId.equals(other.superId))
+			return false;
+		return true;
+	}
+
 }

@@ -39,7 +39,17 @@
 									<span *ngIf="name.valid" class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span>
 								</span> 
 								<input id="name" [disabled]="registering" class="input form-control" type="text" name="name" placeholder="Nome" 
-								minlength="4" [(ngModel)]="product.name" [attr.maxlength]="30" #name="ngModel" required>
+								minlength="2" [(ngModel)]="product.name" [attr.maxlength]="30" #name="ngModel" required>
+							</div>
+							<div class="form-group input-group col-xs-10 col-xs-pull-1 col-xs-push-1 col-md-8 col-md-pull-2 col-md-push-2">
+								<span class="input-group-addon">
+									<span *ngIf="!category.valid" class="fa fa-circle" aria-hidden="true"></span>
+									<span *ngIf="category.valid" class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span>
+								</span> 
+								<select name="gender-select" [disabled]="registering" class="form-control" [(ngModel)]="product.category" #category="ngModel" required>
+									<option value='' selected disabled>Categorias</option>
+									<option *ngFor="let category of categorys" [ngValue]="category">{{category}}</option>
+								</select>
 							</div>
 							<div class="form-group input-group col-xs-10 col-xs-pull-1 col-xs-push-1 col-md-8 col-md-pull-2 col-md-push-2">
 								<span class="input-group-addon">

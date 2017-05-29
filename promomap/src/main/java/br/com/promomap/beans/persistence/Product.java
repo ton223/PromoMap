@@ -6,16 +6,15 @@ package br.com.promomap.beans.persistence;
 
 import java.math.BigDecimal;
 import java.util.Date;
-import java.util.HashSet;
-import java.util.Set;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
@@ -23,6 +22,7 @@ import javax.persistence.TemporalType;
 
 import br.com.promomap.beans.transport.ProductObject;
 import br.com.promomap.model.TransportObjectInterface;
+import br.com.promomap.model.enums.CategoryEnum;
 
 /**
  * @author <a href="mailto:leandro.lucas_@hotmail.com">Leandro Lucas Santos</a>
@@ -53,11 +53,15 @@ public class Product implements TransportObjectInterface<ProductObject> {
 	@Column(name = "price")
 	private BigDecimal price;
 
+	@Column(name = "discount")
+	private BigDecimal discount;
+
 	@Column(name = "rating")
 	private Integer rating;
 
-	@ManyToMany
-	private Set<Tag> tags;
+	@Column(name = "category")
+	@Enumerated(EnumType.STRING)
+	private CategoryEnum category;
 
 	@ManyToOne
 	@JoinColumn(name = "company_id", nullable = false)
@@ -73,10 +77,6 @@ public class Product implements TransportObjectInterface<ProductObject> {
 	@Temporal(TemporalType.TIMESTAMP)
 	@Column(name = "deletedDate")
 	private Date deletedDate;
-
-	public Product() {
-		this.tags = new HashSet<Tag>();
-	}
 
 	public Long getId() {
 		return id;
@@ -134,6 +134,14 @@ public class Product implements TransportObjectInterface<ProductObject> {
 		this.price = price;
 	}
 
+	public BigDecimal getDiscount() {
+		return discount;
+	}
+
+	public void setDiscount(BigDecimal discount) {
+		this.discount = discount;
+	}
+
 	public Integer getRating() {
 		return rating;
 	}
@@ -142,20 +150,20 @@ public class Product implements TransportObjectInterface<ProductObject> {
 		this.rating = rating;
 	}
 
+	public CategoryEnum getCategory() {
+		return category;
+	}
+
+	public void setCategory(CategoryEnum category) {
+		this.category = category;
+	}
+
 	public Company getCompany() {
 		return company;
 	}
 
 	public void setCompany(Company company) {
 		this.company = company;
-	}
-
-	public Set<Tag> getTags() {
-		return tags;
-	}
-
-	public void setTags(Set<Tag> tags) {
-		this.tags = tags;
 	}
 
 	public Date getCreatedAt() {
@@ -191,6 +199,8 @@ public class Product implements TransportObjectInterface<ProductObject> {
 		productO.setDescription(getDescription());
 		productO.setPrice(getPrice());
 		productO.setRating(getRating());
+		productO.setDiscount(getDiscount());
+		productO.setCategory(getCategory().getDescription());
 		productO.setCompany(getCompany().generateTransportObject());
 		productO.setCode(getCode());
 		return productO;

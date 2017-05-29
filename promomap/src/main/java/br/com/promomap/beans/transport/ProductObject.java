@@ -23,7 +23,11 @@ public class ProductObject {
 
 	private BigDecimal price;
 
+	private BigDecimal discount;
+
 	private Integer rating;
+
+	private String category;
 
 	private CompanyObject company;
 
@@ -75,6 +79,14 @@ public class ProductObject {
 		this.price = price;
 	}
 
+	public BigDecimal getDiscount() {
+		return discount;
+	}
+
+	public void setDiscount(BigDecimal discount) {
+		this.discount = discount;
+	}
+
 	public Integer getRating() {
 		return rating;
 	}
@@ -83,11 +95,44 @@ public class ProductObject {
 		this.rating = rating;
 	}
 
+	public String getCategory() {
+		return category;
+	}
+
+	public void setCategory(String category) {
+		this.category = category;
+	}
+
 	public CompanyObject getCompany() {
 		return company;
 	}
 
 	public void setCompany(CompanyObject company) {
 		this.company = company;
+	}
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((superId == null) ? 0 : superId.hashCode());
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		ProductObject other = (ProductObject) obj;
+		if (superId == null) {
+			if (other.superId != null)
+				return false;
+		} else if (!superId.equals(other.superId))
+			return false;
+		return true;
 	}
 }

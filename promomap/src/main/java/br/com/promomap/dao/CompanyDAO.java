@@ -25,4 +25,7 @@ public interface CompanyDAO extends CrudRepository<Company, Long>{
 	@Query("from Company where deleted!=1 and user_id=:id")
 	public List<Company> listByUser(@Param("id")Long userId);
 	
+	@Query("from Company where deleted!=1 and location_id=:locationId")
+	public Company findByLocationId(@Param("locationId")Long userId);
+	
 }

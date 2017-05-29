@@ -4,6 +4,9 @@
  */
 package br.com.promomap.dao;
 
+import java.util.List;
+
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 
 import br.com.promomap.beans.persistence.Location;
@@ -13,6 +16,9 @@ import br.com.promomap.beans.persistence.Location;
  */
 public interface LocationDAO extends CrudRepository<Location, Long> {
 
+	@Query("from Location where deleted!=1")
+	public List<Location> listAll();
+	
 	public Location findBySuperId(String superId);
 
 	public Location findById(Long id);
