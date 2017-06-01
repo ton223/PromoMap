@@ -11,11 +11,13 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import br.com.promomap.beans.persistence.Company;
+import br.com.promomap.beans.persistence.Location;
 import br.com.promomap.beans.persistence.Product;
 import br.com.promomap.beans.persistence.User;
 import br.com.promomap.beans.transport.CompanyObject;
@@ -96,9 +98,17 @@ public class ProductService {
 	public TaskObject listProductsArround(LocationObject origin){
 		TaskObject task = new TaskObject();
 		task.setInfo("Loading Graph");
+		if(origin == null) {
+			origin = new LocationObject();
+			origin.setLat("-8.063077");
+			origin.setLng("-34.877929");
+			task.setErrorCode(123);
+			task.setErrorMessage("Não foi possível estabelecer sua localização.");
+		}
 		Map<CategoryEnum , List<ProductObject>> productsMap = new HashMap<CategoryEnum , List<ProductObject>>();
 		Map<CompanyObject, BigDecimal> distances = new HashMap<CompanyObject, BigDecimal>();
-		this.locationService.getLocationsInRadius(origin).forEach(l -> {
+		Set<Location> locationsInRadius = this.locationService.getLocationsInRadius(origin);
+		for(Location l : locationsInRadius) {
 			Company company = this.companyService.findByLocation(l);
 			for(CategoryEnum category : CategoryEnum.values()) {
 				List<ProductObject> products = new ArrayList<ProductObject>();
@@ -120,7 +130,7 @@ public class ProductService {
 				e.printStackTrace();
 			}
 			distances.put(company.generateTransportObject(), this.distanceService.getDistance());
-		});
+		}
 		Graph graph = new Graph();
 		graph.mount(productsMap, distances);
 		task.setData(graph);

@@ -24,7 +24,7 @@ import br.com.promomap.utils.Utils;
 public class LocationService {
 	
 	private final BigDecimal KM = new BigDecimal("0.00909483");
-	private final BigDecimal MAX_DISTANCE = new BigDecimal("1").multiply(KM); 
+	private final BigDecimal MAX_DISTANCE = new BigDecimal("60").multiply(KM); 
 	
 	@Autowired 
 	private LocationDAO locationDAO;

@@ -19,14 +19,14 @@ public class Vertex {
 
 	private final int id;
 	private final VertexTypeEnum type;
-	private CategoryEnum categoty;
+	private CategoryEnum category;
 	private CompanyObject company;
 	private List<ProductObject> products;
 
 	public Vertex(int id, VertexTypeEnum type, CategoryEnum categoty) {
 		this.id = id;
 		this.type = type;
-		this.categoty = categoty;
+		this.category = categoty;
 	}
 	
 	public Vertex(int id, VertexTypeEnum type) {
@@ -43,12 +43,12 @@ public class Vertex {
 		return type;
 	}
 
-	public CategoryEnum getCategoty() {
-		return categoty;
+	public CategoryEnum getCategory() {
+		return category;
 	}
 
-	public void setCategoty(CategoryEnum categoty) {
-		this.categoty = categoty;
+	public void setCategory(CategoryEnum category) {
+		this.category = category;
 	}
 
 	public CompanyObject getCompany() {

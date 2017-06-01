@@ -46,7 +46,7 @@ public class Graph {
 		}
 		for(Vertex v : categoryVertexs) {
 			Map<CompanyObject, Vertex> vertexByCompany = new HashMap<CompanyObject, Vertex>();
-			for(ProductObject product : products.get(v.getCategoty())) {
+			for(ProductObject product : products.get(v.getCategory())) {
 				Vertex vertexExist = vertexByCompany.get(product.getCompany());
 				if(vertexExist != null) {
 					vertexExist.getProducts().add(product);

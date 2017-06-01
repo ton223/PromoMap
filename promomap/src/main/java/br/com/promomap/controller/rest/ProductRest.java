@@ -7,7 +7,7 @@ package br.com.promomap.controller.rest;
 import javax.ws.rs.core.Response;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -27,8 +27,8 @@ public class ProductRest {
 	@Autowired
 	private ProductService productService;
 	
-	@GetMapping()
-	public Response list(@RequestHeader("token") String token,  @RequestBody LocationObject userLocation) {
+	@PostMapping("/list-radius")
+	public Response list(@RequestHeader("token") String token,  @RequestBody(required=false) LocationObject userLocation) {
 		TaskObject task = productService.listProductsArround(userLocation);
 		return Response.ok(task).build();
 	}
