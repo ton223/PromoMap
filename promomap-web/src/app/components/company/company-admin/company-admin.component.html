@@ -14,7 +14,7 @@
         	<span class="alert-danger" *ngIf="error">
                Erro: {{errorMessage}}
             </span>
-            <button *ngIf="!isEditing" type="button" (click)="setEditing()" class="btn btn-xs btn-default pull-right"><i class="glyphicon glyphicon-pencil"></i></button>
+            <button *ngIf="!isEditing" type="button" (click)="setEditing()" class="btn btn-xs btn-default pull-right" tooltip="Editar"><i class="glyphicon glyphicon-pencil"></i></button>
         </h3>
       </div>
       <div class="panel-body">

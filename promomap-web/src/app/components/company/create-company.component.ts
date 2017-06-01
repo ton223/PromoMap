@@ -2,8 +2,8 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import { Company } from '../../models/Company';
 import { MapMarkerComponent } from '../map/map-marker.component';
-import { CompanyService } from '../../services/company-rest.service';
-import { ImageService } from '../../services/image-rest.service';
+import { CompanyService } from '../../services/rest/company-rest.service';
+import { ImageService } from '../../services/rest/image-rest.service';
 
 @Component({
   selector: 'app-create-company',

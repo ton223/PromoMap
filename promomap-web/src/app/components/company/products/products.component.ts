@@ -1,7 +1,7 @@
 import { Component, OnInit, Inject } from '@angular/core';
 import { DOCUMENT } from '@angular/platform-browser';
 import { Router } from '@angular/router';
-import { CompanyService } from '../../../services/company-rest.service';
+import { CompanyService } from '../../../services/rest/company-rest.service';
 import { productDAO } from '../../../dao/product-dao';
 import { Product }  from '../../../models/Product';
 

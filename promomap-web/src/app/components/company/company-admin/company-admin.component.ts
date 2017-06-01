@@ -2,7 +2,7 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Company } from '../../../models/Company';
 import { Marker } from '../../../models/Marker';
-import { CompanyService } from '../../../services/company-rest.service';
+import { CompanyService } from '../../../services/rest/company-rest.service';
 
 @Component({
   selector: 'app-company-admin',

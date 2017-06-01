@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { User } from '../../models/User';
-import { UserService } from '../../services/user-rest.service';
+import { UserService } from '../../services/rest/user-rest.service';
 import { AppComponent } from '../../app.component';
 import { SessionDAO } from '../../dao/session-dao';
 

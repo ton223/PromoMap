@@ -5,8 +5,8 @@ import 'rxjs/add/operator/catch';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/toPromise';
 
-import { User } from '../models/User';
-import { Utils } from '../utils/utils';
+import { User } from '../../models/User';
+import { Utils } from '../../utils/utils';
 
 @Injectable()
 export class UserService {

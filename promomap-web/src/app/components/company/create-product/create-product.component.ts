@@ -1,9 +1,9 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { FileUploader } from 'ng2-file-upload';
-import { ImageService } from '../../../services/image-rest.service';
+import { ImageService } from '../../../services/rest/image-rest.service';
 import { DOCUMENT } from '@angular/platform-browser';
 
-import { CompanyService } from '../../../services/company-rest.service';
+import { CompanyService } from '../../../services/rest/company-rest.service';
 import { Product } from '../../../models/Product'
 import { productDAO } from '../../../dao/product-dao';
 

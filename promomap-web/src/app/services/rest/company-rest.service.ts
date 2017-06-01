@@ -5,9 +5,9 @@ import 'rxjs/add/operator/catch';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/toPromise';
 
-import { Company } from '../models/Company';
-import { Product } from '../models/Product';
-import { Utils } from '../utils/utils';
+import { Company } from '../../models/Company';
+import { Product } from '../../models/Product';
+import { Utils } from '../../utils/utils';
 
 @Injectable()
 export class CompanyService {

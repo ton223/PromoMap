@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { SessionDAO } from '../../../dao/session-dao';
 import { User } from '../../../models/User';
-import { UserService } from '../../../services/user-rest.service';
+import { UserService } from '../../../services/rest/user-rest.service';
 
 @Component({
   selector: 'app-profile',
