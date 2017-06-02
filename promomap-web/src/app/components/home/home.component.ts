@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Inject } from '@angular/core';
+import { DOCUMENT } from '@angular/platform-browser';
 
 import { LocationService } from '../../services/location.service';
 import { ProductService } from '../../services/rest/product-rest.service';
@@ -18,6 +19,9 @@ export class HomeComponent implements OnInit {
   private showInfo: boolean;
   private infoMessage: string;
   private loading: boolean;
+
+  private productModal: any;
+  private clickedProduct: any;
 
   private graph: Graph;
 
@@ -41,9 +45,10 @@ export class HomeComponent implements OnInit {
   private distanceFilter = 60000;
   private nameFilter: string;
 
-  constructor(private locationService: LocationService, private productService: ProductService) {}
+  constructor(private locationService: LocationService, private productService: ProductService, @Inject(DOCUMENT) private document: any) {}
 
   ngOnInit() {
+    this.productModal = this.document.getElementsByTagName('app-product-modal');
     this.loading = true;
     this.errorMessage = this.locationService.updateCurrentUserPosition();
     if(this.errorMessage !== undefined) {
@@ -82,6 +87,7 @@ export class HomeComponent implements OnInit {
   }
 
   public openProductInfo(product: any) {
+    this.productModal[0].firstChild.click();
     console.log(product.name);
   }
 

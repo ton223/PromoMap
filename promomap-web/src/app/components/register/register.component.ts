@@ -1,4 +1,8 @@
-import { Component } from '@angular/core';
+import { Component, OnInit, Inject } from '@angular/core';
+import { DOCUMENT } from '@angular/platform-browser';
+
+import { TermsModalComponent } from '../terms-modal/terms-modal.component';
+
 import { User } from '../../models/User';
 import { UserService } from '../../services/rest/user-rest.service';
 
@@ -15,7 +19,7 @@ export class RegisterComponent {
   private error: boolean;
   private errorMessage: string;
   private errorCode: number;
-  constructor(private userService: UserService) { }
+  constructor(private userService: UserService, @Inject(DOCUMENT) private document: any) { } // 
 
   public isValidEmail(): boolean {
     const email: string = this.user.getEmail();
@@ -50,4 +54,8 @@ export class RegisterComponent {
     );
   }
 
+  public openTermsModal() {
+  	let termsModal = this.document.getElementsByTagName('app-terms-modal');
+    termsModal[0].firstChild.click();
+  }
 }

@@ -6,17 +6,19 @@
 					<div class="form-group"><input class="form-control filter-item" type="text" placeholder="Filtrar por nome" name="nameFilter" [(ngModel)]="nameFilter" (ngModelChange)="filterByName()"/></div>
 				</div>
 			</div>
-			<div class="row hidden-xs">
+			<div class="row hidden-sm hidden-xs">
 				<div class="col-xs-10 col-xs-push-1 col-xs-pull-1">
 					<div class="filter-item col-xs-12">
 						<span style="position: absolute; top: 8px">Distância de carro: {{distanceFilter / 1000}} Km</span>
 					</div>
 					<br>
 					<br>
-					<input type="range" id="slideDistance" name="slideDistance" [(ngModel)]="distanceFilter" (ngModelChange)="updateFilter()" min="0" max="60000"/>
+					<div class="filter-list">
+						<input type="range" id="slideDistance" name="slideDistance" [(ngModel)]="distanceFilter" (ngModelChange)="updateFilter()" min="0" max="60000"/>
+					</div>
 					<br>
 					<div class="filter-list" *ngFor="let filter of categoryFilter">
-						<label for="{{filter.category}}" class="filter-item col-xs-12">
+						<label for="{{filter.category}}" class="col-xs-12 filter-item">
 							{{filter.name}} 
 							<input type="checkbox" id="{{filter.category}}" class="badgebox" name="showCategory" [(ngModel)]="filter.show" (ngModelChange)="updateFilter()">
 							<span *ngIf="filter.show" class="fa fa-check pull-right icon"></span>
@@ -45,7 +47,8 @@
 		</div>
 		<div class="row" *ngIf="!loading"> 
 			<div class="col-md-3  col-xs-6 gallery-item" *ngFor="let product of pages[currentPage].products">
-				<cl-image (click)="openProductInfo(product)" style="cursor: pointer" class="img-thumbnail img-responsive" public-id="{{product.imagePublicId}}"  height="300" width="300" crop="fill"></cl-image>
+				<cl-image *ngIf="product.imagePublicId != null && product.imagePublicId.length > 0" (click)="openProductInfo(product)" style="cursor: pointer" class="img-thumbnail img-responsive" public-id="{{product.imagePublicId}}"  height="300" width="300" crop="fill"></cl-image>
+				<cl-image *ngIf="product.imagePublicId == null || product.imagePublicId.length == 0" (click)="openProductInfo(product)" style="cursor: pointer" class="img-thumbnail img-responsive" public-id="tnqrpzoyessdzwokijak.jpg"  height="300" width="300" crop="fill"></cl-image>
 				<div class="text-center">
 					<span class="label label-primary" *ngIf="product.discount == null">{{product.name}} - R$ {{product.price}}</span>
 					<span class="label label-success" *ngIf="product.discount != null">{{product.name}} - R$ {{getDiscountedPrice(product)}}</span>
@@ -77,3 +80,4 @@
 		
 	</div> 
 </div>
+<app-product-modal></app-product-modal>

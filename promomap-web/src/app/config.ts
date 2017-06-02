@@ -1,4 +1,4 @@
-/*System.config({
+System.config({
   transpiler: 'typescript',
   typescriptOptions: {
     emitDecoratorMetadata: true
@@ -25,7 +25,7 @@
 
     'rxjs': 'npm:rxjs',
 
-    'angular2-google-maps/core': 'npm:angular2-google-maps/core/core.umd.js'
+    'angular2-google-maps/core': 'npm:angular2-google-maps/core/core.umd.js',
   },
   //packages defines our app package
   packages: {
@@ -40,4 +40,4 @@
   paths: {
     'npm:': 'https://unpkg.com/'
   }
-});*/
+});

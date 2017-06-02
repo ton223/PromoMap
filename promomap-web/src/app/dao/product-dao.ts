@@ -1,7 +1,8 @@
 import { Product } from '../models/Product';
 
 export class productDAO {
-    public static products = [];
+    private static products = [];
+    private static currentProduct: any;
 
     public static getProducts(): Product[] {
         return this.products;
@@ -30,5 +31,13 @@ export class productDAO {
 
     public static add(product: Product) {
         this.products.push(product);
+    }
+
+    public static setCurrentProduct(cp: any) {
+        this.currentProduct = cp;
+    }
+
+    public static getCurrentProduct(): any {
+        return this.currentProduct;
     }
 }

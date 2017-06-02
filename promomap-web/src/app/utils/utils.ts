@@ -5,7 +5,7 @@ import { SessionDAO } from '../dao/session-dao';
 @Injectable()
 export class Utils {
 
-  private URL = 'http://127.0.0.1:8080/';
+  private URL = 'http://192.168.25.15:8080/';
 
   public getUrl(path: string) {
     return this.URL + path;

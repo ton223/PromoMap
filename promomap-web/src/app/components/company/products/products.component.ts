@@ -18,7 +18,7 @@ export class ProductsComponent implements OnInit {
   private modal: any;
   private companyId: string;
 
-  private products = productDAO.products;
+  private products = productDAO.getProducts();
   constructor(private router: Router, @Inject(DOCUMENT) private document: any, private companyService: CompanyService) { }
 
   ngOnInit() {

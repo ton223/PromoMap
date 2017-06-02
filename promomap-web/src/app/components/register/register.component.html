@@ -49,8 +49,9 @@
 			<input id="password" class="input form-control" type="password" name="password" placeholder="Senha" 
 			[(ngModel)]="user.password" minlength="8" [attr.maxlength]="30" #password="ngModel" required>
 		</div>
-		<input type="checkbox" name="terms" id="terms" [(ngModel)]="terms" required> Aceito os termos.
+		<input type="checkbox" name="terms" id="terms" [(ngModel)]="terms" required> Aceito os <a style="cursor: pointer" (click)="openTermsModal()">termos</a>.
 	</div>
 		<br>
 	<button type="submit" [disabled]="!registerForm.form.valid" class="btn btn-success" (click)="register()">Registrar</button>
 </form>
+<app-terms-modal></app-terms-modal>

@@ -24,6 +24,8 @@ import { CompanysComponent } from './components/company/companys/companys.compon
 import { ProductsComponent } from './components/company/products/products.component';
 import { CompanyAdminComponent } from './components/company/company-admin/company-admin.component';
 import { CreateProductComponent } from './components/company/create-product/create-product.component';
+import { TermsModalComponent } from './components/terms-modal/terms-modal.component';
+import { ProductModalComponent } from './components/company/product-modal/product-modal.component';
 
 const appRoutes: Routes = [
   { path: 'home', component: HomeComponent },
@@ -51,7 +53,9 @@ export const cloudinaryLib = {
     CompanysComponent,
     ProductsComponent,
     CompanyAdminComponent,
-    CreateProductComponent
+    CreateProductComponent,
+    TermsModalComponent,
+    ProductModalComponent
   ],
   imports: [
     BrowserModule,
