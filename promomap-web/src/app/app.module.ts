@@ -76,5 +76,6 @@ export const cloudinaryLib = {
   providers: [],
   bootstrap: [AppComponent]
 })
+
 export class AppModule { }
 

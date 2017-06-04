@@ -38,7 +38,7 @@ export class LoginComponent implements OnInit {
           this.user = task.data;
           this.router.navigate(['home']);
         } else {
-          //dar erro
+          //error
         }
       }
     );
