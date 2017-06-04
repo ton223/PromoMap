@@ -27,6 +27,8 @@ import { CreateProductComponent } from './components/company/create-product/crea
 import { TermsModalComponent } from './components/terms-modal/terms-modal.component';
 import { ProductModalComponent } from './components/company/product-modal/product-modal.component';
 
+import { FacebookModule } from 'ng2-facebook-sdk';
+
 const appRoutes: Routes = [
   { path: 'home', component: HomeComponent },
   { path: 'register', component: RegisterComponent },
@@ -62,6 +64,7 @@ export const cloudinaryLib = {
     FormsModule,
     HttpModule,
     RouterModule.forRoot(appRoutes),
+    FacebookModule.forRoot(),
     AgmCoreModule.forRoot({
       apiKey: 'AIzaSyBqo98hmF-8oiavOEWtd_MNSb6QV3kXcmM',
       libraries: ['places']
